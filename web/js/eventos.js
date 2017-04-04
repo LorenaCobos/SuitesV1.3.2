@@ -27,7 +27,13 @@ var eventos = {
         $('<style type="text/css"> .ui-datepicker-current { display: none; } </style>').appendTo("head");
         $("#buttonBuscar").click(function (event) {
             event.preventDefault();
-            eventos.obtenerEventos();
+            if($("#selectRecinto").val()===0||$("#selectRecinto").val()==='0')
+            {
+                alertaError(error, seleccion);
+            }
+            else{
+                    eventos.obtenerEventos();
+                }
         });
         
         $("#selectRecinto").change(function (event) {
