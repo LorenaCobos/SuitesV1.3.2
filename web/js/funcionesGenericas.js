@@ -4,7 +4,7 @@ var timpoinicio=0;
 function validacion_()
 {
     var a = new Date();
-    var min =a.getMinutes()+10;
+    var min =a.getMinutes()+30;
     var hrs=a.getHours();
     var myTimer = a.getHours()+":"+a.getMinutes(); //17:58
     if(hrs<=9 && min<60){hrs="0"+hrs;}
@@ -26,7 +26,7 @@ function validacion_()
             if(myTimer < aux)
             {
                 var s = new Date();
-                var min =(s.getMinutes()+10);
+                var min =(s.getMinutes()+30);
                 var hrs=s.getHours();
                 if(hrs<=9 && min<60){hrs="0"+hrs;}
                 if(min>=60){ min= min-60;hrs=parseInt(hrs)+1;if(min<10){min ="0"+min;}}

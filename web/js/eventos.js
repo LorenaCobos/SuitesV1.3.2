@@ -55,6 +55,7 @@ var eventos = {
             $("#txtFechaInicio").val("");
             $("#txtFechaFin").val("");
             $("#divEventos").html("");
+            $("#eventosWidget").html("");
         });
 
         event.preventDefault();

@@ -72,7 +72,7 @@ public class SuitesController extends BaseController implements Serializable {
             return loginSeleccion(session, response, req);
         }
        
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         ModelAndView modeloVista = new ModelAndView("login");
         String contexto = obtenerContexto("http", req.getServerName(), String.valueOf(req.getServerPort()));
         modeloVista.addObject("contexto", contexto);
@@ -83,7 +83,7 @@ public class SuitesController extends BaseController implements Serializable {
     @RequestMapping(value = "/loginSel", method = RequestMethod.GET)
     public ModelAndView loginSeleccion(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         ModelAndView modeloVista = new ModelAndView("loginSel");
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
             return Login_(req);
@@ -113,7 +113,7 @@ public class SuitesController extends BaseController implements Serializable {
 
     @RequestMapping(value = "/s/suites", method = RequestMethod.GET)
     public ModelAndView suites(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad"); 
         if(session.getAttribute("usuarioEntidad") == null)
         {
@@ -136,7 +136,7 @@ public class SuitesController extends BaseController implements Serializable {
 
     @RequestMapping(value = "/s/administracion", method = RequestMethod.GET)
     public ModelAndView administracion(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
         if(session.getAttribute("usuarioEntidad") == null)
         {
@@ -159,7 +159,7 @@ public class SuitesController extends BaseController implements Serializable {
   @RequestMapping(value = "/s/detalleEventoAdmin", method = RequestMethod.POST)
     public ModelAndView detalleEventoAdmin(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         ModelAndView modeloVista = new ModelAndView("detalleEventoAdmin");
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
            return Login_(req);
@@ -178,7 +178,7 @@ public class SuitesController extends BaseController implements Serializable {
     @RequestMapping(value = "/s/ayudaBoletos", method = RequestMethod.GET)
     public ModelAndView ayudaBoletos(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         ModelAndView modeloVista = new ModelAndView("ayudaBoletos");
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
            return Login_(req);
@@ -197,7 +197,7 @@ public class SuitesController extends BaseController implements Serializable {
     @RequestMapping(value = "/s/eventos", method = RequestMethod.GET)
     public ModelAndView eventos(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
-       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
            return Login_(req);
@@ -225,7 +225,7 @@ public class SuitesController extends BaseController implements Serializable {
 
     @RequestMapping(value = "/s/detalleEvento", method = RequestMethod.POST)
     public ModelAndView detalleEvento(@ModelAttribute("command") EventoSeleccionadoEntidad eventoSeleccionado, HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
-       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
            return Login_(req);
@@ -248,7 +248,7 @@ public class SuitesController extends BaseController implements Serializable {
     @RequestMapping(value = "/s/usuarios", method = RequestMethod.GET)
     public ModelAndView usuarios(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
         {
            return Login_(req);
@@ -282,7 +282,7 @@ public class SuitesController extends BaseController implements Serializable {
 
     @RequestMapping(value = "/s/detalleSuite", method = RequestMethod.POST)
     public ModelAndView detalleSuite(@ModelAttribute("command") EventoSeleccionadoEntidad eventoSeleccionado, HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
-       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+       session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         ModelAndView modeloVista = new ModelAndView("detalleSuite");
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
         if(session.getAttribute("usuarioEntidad") == null)
@@ -319,7 +319,7 @@ public class SuitesController extends BaseController implements Serializable {
     @RequestMapping(value = "/s/detalleUsuario", method = RequestMethod.POST)
     public ModelAndView detalleUsuarios(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         ModelAndView modeloVista = new ModelAndView("detalleUsuarios");
-        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "600")));
+        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
         if(session.getAttribute("usuarioEntidad") == null)
         {

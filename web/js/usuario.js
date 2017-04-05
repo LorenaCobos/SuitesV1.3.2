@@ -22,6 +22,9 @@ var usuarios = {
             $("#selectEstatus").val(0);
             $("#selectRecinto").val(0);
             $("#selectRecinto").change();
+            $("#contUsuarios").val("");
+            var Table = document.getElementById("contUsuarios");
+            Table.innerHTML = "";
         });
         
          $("#selectRecinto").change(function (event) {
@@ -82,10 +85,9 @@ var usuarios = {
                     + '<td style="text-align:center" aling="center">'
                     + data[i].perfilNombre
                     + '</td>'
+            
                     + '<td style="text-align:center" aling="center">'
-                         + '<a href="#"'  
-                        + ' onClick="usuarios.irDetalleForm(' + data[i].usuarioId + ')">'
-                        + '<img src="../assets/img/user_edit.png"></img></a>'  
+                      
                 
                   + (data[i].estatusId === 5 ? "<a href='#' id='" + data[i].usuarioId 
                     + "'  onClick='usuarios.cambiarEstatus(" + data[i].usuarioId + "," + data[i].estatusId + ",\"" + data[i].nombres + "\")'>"
@@ -96,8 +98,10 @@ var usuarios = {
                      "<a href='#' id='" + data[i].usuarioId 
                     + "'  onClick='usuarios.cambiarEstatus(" + data[i].usuarioId + "," + data[i].estatusId + ",\"" + data[i].nombres + "\")'>"
                     + "<img src='../assets/img/user_delete.png' class='styleima'/></a>") 
-                
-                
+                   
+                       + '<a href="#"'  
+                        + ' onClick="usuarios.irDetalleForm(' + data[i].usuarioId + ')">'
+                        + '<img src="../assets/img/user_edit.png"></img></a>'  
                     
                     
                     +'</td>'

@@ -62,7 +62,7 @@
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p>Ve al apartado de "Eventos" dentro del detalle del Evento y empieza a disfutar los beneficios que te brinda. </p>
+                <p>Ve al apartado de "Eventos" dentro del detalle del Evento y empieza a disfrutar los beneficios que te brinda. </p>
                 <img style="width:100%;height:auto;" src="../assets/img/vntaboletos.png">           
             </div>
         </div>

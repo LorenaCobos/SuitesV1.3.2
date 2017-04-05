@@ -10,11 +10,25 @@ function inicioGeneral()
 }
 
 var eventos = {
+    
     cargaInicial: function() {
+        var dateinicio=$("#txtFechaInicio").val();
+        var datefin;
         $("#txtFechaInicio").datepicker({changeMonth: true, dateFormat: 'dd/mm/yy',
-            changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
+            changeYear: true, onSelect: function(textoFecha, objDatepicker)
+            {
+                datefin=$("#txtFechaFin").val();
+                dateinicio=textoFecha;
+                var z= new Date();
+                var w= new Date();
+                var fechainicio = dateinicio.split('/');
+                var fechafin = datefin.split('/');
+                z.setFullYear(fechainicio[2],fechainicio[1]-1,fechainicio[0]);
+                w.setFullYear(fechafin[2],fechafin[1]-1,fechafin[0]);
+                if(w<=z){alertaError(error, horario);$("#txtFechaFin").val("")};
+            },
             onClose: function(dateText, inst) {
                 if ($(window.event.srcElement).hasClass('ui-datepicker-close'))
                 {
@@ -22,9 +36,20 @@ var eventos = {
                 }
             }});
         $("#txtFechaFin").datepicker({changeMonth: true, dateFormat: 'dd/mm/yy',
-            changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
+             changeYear: true,onSelect: function(textoFecha, objDatepicker)
+            {
+                dateinicio=$("#txtFechaInicio").val();
+                datefin=textoFecha;
+                var x= new Date();
+                var y= new Date();
+                var fechainicio = dateinicio.split('/');
+                var fechafin = datefin.split('/');
+                x.setFullYear(fechainicio[2],fechainicio[1]-1,fechainicio[0]);
+                y.setFullYear(fechafin[2],fechafin[1]-1,fechafin[0]);
+                if(y<=x){alertaError(error, horario);$("#txtFechaFin").val("")};
+            },
             onClose: function(dateText, inst) {
                 if ($(window.event.srcElement).hasClass('ui-datepicker-close'))
                 {
@@ -43,6 +68,9 @@ var eventos = {
             $("#txtFechaInicio").val("");
             $("#txtFechaFin").val("");
             $("#select").val(0);
+             $("#contTabla").val("");
+            var Table = document.getElementById("contTabla");
+            Table.innerHTML = "";
         });
 
 
