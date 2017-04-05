@@ -158,7 +158,7 @@
             <!--        Estacionamientos        -->
             <div class="row">
                 <div class="col-md-2 col-sm-4 col-xs-12 text-left">
-                    <label for="textfield2" class="control-label" ><s:message code="key_estacionamiento"/>:</label>
+                    <label for="textfield2" class="control-label" ><s:message code="key_estacionamiento1"/>:</label>
                 </div>
                 <div class="col-md-4 col-sm-8 col-xs-12">
                     <select name="selectEstacionamiento" id="selectEstacionamiento" class="form-control">
