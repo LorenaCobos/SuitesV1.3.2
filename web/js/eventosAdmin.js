@@ -265,6 +265,8 @@ var eventos = {
             evento = $("#InpHid" + ids).val();
             fecha = $("#fechaHid" + ids).val();
             presentacion =$("#preHid" + ids).val();
+            alert(eventos.fileSizeKb);
+            alert(id.target.files[0].size,ids);
             if(eventos.fileSizeKb(id.target.files[0].size,ids)){
                 alertaError(error, pesoImagenError);
             }else{

@@ -46,6 +46,10 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div style="padding-top: 10px">
                             <div><label class="label-evento-panel">${evento.evento}</label></div>
+                               <div><label>${evento.recinto}</label></div>		
+                            <div style="font-weight: 700; color: #000">		
+                                <s:message code="key_placeholder_suite"/>:<label>${evento.suite}</label> 		
+                            </div>   
                             <div>  
                                 <i class="fa fa-calendar-o"></i>
                                 <label>${evento.fechaPresentacion}</label>

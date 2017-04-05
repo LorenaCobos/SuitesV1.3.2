@@ -4,7 +4,7 @@
  */
 
 //Genericos
-var horario ="Error, la fecha es incorrecta";
+var horario ="La fecha es incorrecta";
 var sesion_="Session Error, Please Start Again";
 var seleccion="Seleccionar un Recinto";
 var invalido ="Invalid"

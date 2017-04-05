@@ -4,8 +4,8 @@
  */
 
 //Genericos
-var horario ="Error, la fecha es incorrecta";
-var horario_ ="Error, la fecha es correcta";
+var horario ="La fecha es incorrecta";
+var horario_ ="La fecha es correcta";
 var seleccion="Seleccionar un Recinto";
 var sesion_="Error de Session , Favor de iniciar Nuevamente";
 var invalido ="Invalido";
@@ -36,7 +36,8 @@ var avisoTituloGenerico="Aviso";
 var errorInternoRecuperar ="Ha ocurrido un error. Por favor intente nuevamente";
 var no_existe_usuario="No existe un usuario asociado al correo electrónico proporcionado. Por favor verifique su información.";
 var bienvenido = "Bienvenido";
-var usuarioSinPermisos = "El usuario no cuenta con el permiso necesario para ingresar";
+//var usuarioSinPermisos = "El usuario no cuenta con el permiso necesario para ingresar";
+var usuarioSinPermisos = "El usuario o contraseña es incorrecto";
 var tituo = "Ingrese su correo electr&oacute;nico para recuperar su ";
 var usuario = "Usuario";
 var contrasenia = "Contrase&ntilde;a";
