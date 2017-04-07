@@ -55,7 +55,20 @@ public class EventosDAO extends BaseDAO {
                 suiteEntity.setEvento(rs.getString("EVENTO"));
                 suiteEntity.setEstatusId(rs.getInt("ESTATUS_ID"));
                 suiteEntity.setRuta(rs.getString("IMG_EST")); 
-                listaResultados.add(suiteEntity);
+                if(estatus.equals("0"))
+                {
+                     listaResultados.add(suiteEntity);
+                }
+                if(estatus.equals("INACTIVO"))
+                {
+                    if(suiteEntity.getEstatusId()==6 || suiteEntity.getEstatusId()==0)
+                    {listaResultados.add(suiteEntity);}  
+                }
+                else
+                {
+                    if(suiteEntity.getEstatusId()==5 )
+                    {listaResultados.add(suiteEntity);}
+                }
             }
         } catch (SQLException e) {
             System.err.println("");
@@ -82,11 +95,11 @@ public class EventosDAO extends BaseDAO {
         CallableStatement objlStmnt;
         try {
             objlStmnt = conn.prepareCall(QUERY);
-            objlStmnt.setInt(1, recintoId);
-            objlStmnt.setString(2, evento);
-            objlStmnt.setString(3, fechaInicio);
-            objlStmnt.setString(4, fechaFin);
-            objlStmnt.setInt(5, secciones);
+            objlStmnt.setInt(1, recintoId);//411
+            objlStmnt.setString(2, evento);//''
+            objlStmnt.setString(3, fechaInicio);//''
+            objlStmnt.setString(4, fechaFin);//''
+            objlStmnt.setInt(5, secciones);//8325
             objlStmnt.registerOutParameter(6, OracleTypes.CURSOR);
             objlStmnt.execute();
             rs = (ResultSet) objlStmnt.getObject(6);
@@ -181,6 +194,7 @@ public class EventosDAO extends BaseDAO {
 	ResultSet rs = null;
         int disponibles = 0;
         int estacionamientos = 0;
+         int invitacion = 0;
         final String QUERY = "{call "+SUITES_PKG+".DETALLE_IMPRESIONES_PRC( ?,"+ // usuarioId 
                                                                             "?," +// eventoId
                                                                             "?," +// presentacionId
@@ -188,7 +202,8 @@ public class EventosDAO extends BaseDAO {
                                                                             "?," +// lenguajeId
                                                                             "?," +// o_Cursor
                                                                             "?," +// o_LugaresDiponibles
-                                                                            "?)}";// o_EstacionamienosDiponibles
+                                                                            "?," +// o_EstacionamienosDiponibles
+                                                                            "?)}";// o_invitacionesDiponibles
         
         Connection conn = getConnectionVentas();
         CallableStatement objlStmnt;
@@ -202,10 +217,13 @@ public class EventosDAO extends BaseDAO {
             objlStmnt.registerOutParameter(6, OracleTypes.CURSOR);
             objlStmnt.registerOutParameter(7, OracleTypes.INTEGER);//4
             objlStmnt.registerOutParameter(8, OracleTypes.INTEGER);//4
+            objlStmnt.registerOutParameter(9, OracleTypes.INTEGER);//4
             objlStmnt.execute();
             rs = (ResultSet) objlStmnt.getObject(6);
             disponibles = objlStmnt.getInt(7);
             estacionamientos = objlStmnt.getInt(8);
+            invitacion = objlStmnt.getInt(9);
+            //int estacionamientos = 0;
             DetalleImpresion detalleImpresion;
             while (rs.next()) {
             	detalleImpresion = new DetalleImpresion();
@@ -234,12 +252,14 @@ public class EventosDAO extends BaseDAO {
             	detalleImpresion.setCantidadCancelados(rs.getInt("CANTIDAD_CANCELADOS"));
             	detalleImpresion.setCantidadImpresos(rs.getInt("CANTIDAD_IMPRESOS"));
             	detalleImpresion.setCorreo(rs.getString("CORREO"));
+                //detalleImpresion.setInvitacion(rs.getInt("INVITACION"));
             	detalleImpresion.setClaveEstatus(rs.getString("CLAVE_ESTATUS_BOLETO"));
             	resultado.add(detalleImpresion);
             }
             detalle.setDetalle(resultado);
             detalle.setLugaresDisponibles(disponibles);
             detalle.setEstacionamientosDisponibles(estacionamientos);
+            detalle.setInvitacion_(invitacion);
         }catch (SQLException e){
             System.err.println(e.getMessage());
 //            this.generarEventoError(new ExceptionCmm("Error al obtener resumenImpresos", e));

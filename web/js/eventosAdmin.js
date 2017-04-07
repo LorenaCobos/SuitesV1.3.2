@@ -265,8 +265,8 @@ var eventos = {
             evento = $("#InpHid" + ids).val();
             fecha = $("#fechaHid" + ids).val();
             presentacion =$("#preHid" + ids).val();
-            alert(eventos.fileSizeKb);
-            alert(id.target.files[0].size,ids);
+            //alert(eventos.fileSizeKb);
+            //alert(id.target.files[0].size,ids);
             if(eventos.fileSizeKb(id.target.files[0].size,ids)){
                 alertaError(error, pesoImagenError);
             }else{
@@ -283,7 +283,7 @@ var eventos = {
          var nombre="Evento_"+evento+"_"+fecha;
         nombre =nombre.replace(" ","_").replace("/","_").replace("/","_").replace(":","_");
         //alert(evento+"==="+nombre);
-        dwrEvento.saveArchivo( 0, /*nombre+ext*/"Evento_"+evento+ext,  presentacion,
+        dwrEvento.saveArchivo( 0, /*nombre+ext*/"Evento_"+evento+ext,  evento,
                     {
                         callback: function(data) {
                             switch (data) {
@@ -372,8 +372,8 @@ function uploadFiles(event)
     oMyForm.append("id", evento);
 
     $.ajax({
-        url: baseNormal + '/upload.do',
-       // url:'http://10.19.0.193:8080/Suites/upload.do',
+        //url: baseNormal + '/upload.do',
+        url:'http://10.19.0.194:8080/Suites/upload.do',
         data: oMyForm,
         dataType: 'text',
         processData: false,

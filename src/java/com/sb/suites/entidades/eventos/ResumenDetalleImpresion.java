@@ -12,6 +12,7 @@ public class ResumenDetalleImpresion {
     private int lugaresDisponibles=0;
     private ArrayList<DetalleImpresion> detalle = new ArrayList<DetalleImpresion>();
     private int estacionamientosDisponibles=0;
+    private int invitacion_=0;
 
     /**
      * @return the lugaresDisponibles
@@ -53,5 +54,19 @@ public class ResumenDetalleImpresion {
      */
     public void setEstacionamientosDisponibles(int estacionamientosDisponibles) {
         this.estacionamientosDisponibles = estacionamientosDisponibles;
+    }
+
+    /**
+     * @return the invitacion_
+     */
+    public int getInvitacion_() {
+        return invitacion_;
+    }
+
+    /**
+     * @param invitacion_ the invitacion_ to set
+     */
+    public void setInvitacion_(int invitacion_) {
+        this.invitacion_ = invitacion_;
     }
 }

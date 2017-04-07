@@ -86,6 +86,12 @@ var estatus_fin=" Invitacion Finalizada";
 var estatus_can=" Invitacion Cancelada";
 var seleccionSuiteUsuario="Select at least one suite";
 
+var envioinvita="La invitaci&oacute;n se han enviado correctamente";
+var renvioinvita="La invitaci&oacute;n se han reenviado correctamente";
+var envioboletos="Los boletos se han enviado correctamente";
+var renvioboletos="Los boletos se han reenviado correctamente";
+var cancelacioninvita="La invitaci&oacute;n se han cancelado correctamente";
+
 //Detalle Evento
 var msgInvitacionImprimir="&iquest;Est&aacute; seguro que desea imprimir el(los) boleto(s)?";
 var msgInvitacionInvitar="&iquest;Est&aacute; seguro que desea enviar la invitaci&oacute;n?";
@@ -95,12 +101,12 @@ var msgInvitacionCancelar="&iquest;Est&aacute; seguro que desea cancelar la invi
 var msgInvitacionAceptar="&iquest;Est&aacute; seguro que desea enviar el(los) boleto(s)?";
 var errorGenerarBoleto="No se puede visualizar los boletos, por favor de ir a RESUMEN DETALLE y generarlos de nuevo";
 var errorGenerarInvitacion="No se pudo generar la invitaci&oacute;n, por favor intente mas tarde";
-var renvioinvita="La invitación se ha reenviado correctamente";
+var renvioinvita="La invitaci&oacute;n se ha reenviado correctamente";
 var correoInvalido="Invalid email"
 
 //Estacionamientos
 var errorEstacionamientoNoValido="The amount of parking exceeds the allowed limit , please select fewer";
-var pesoImagenError="The weight of the image in the permissible limit Exed kb";
+var pesoImagenError="The weight of the image in the permissible limit Exed 50 kb";
 var boletos ="Tickets";
 var invitacion_nogenerada ="La invitaci&oacute;n no se ha podido generar";
 var estacionamientos ="Parcking"; 

@@ -47,6 +47,8 @@ public class DetalleImpresion {
     private int cantidadImpresos = 0;
     private int cantidadEstacionamientos = 0;
     private int lugaresDisponibles = 0;
+    
+    private int invitacion=0;
 
     /**
      * @return the nombreUsusario
@@ -466,6 +468,20 @@ public class DetalleImpresion {
      */
     public void setCantidadEstacionamientos(int cantidadEstacionamientos) {
         this.cantidadEstacionamientos = cantidadEstacionamientos;
+    }
+
+    /**
+     * @return the invitacion
+     */
+    public int getInvitacion() {
+        return invitacion;
+    }
+
+    /**
+     * @param invitacion the invitacion to set
+     */
+    public void setInvitacion(int invitacion) {
+        this.invitacion = invitacion;
     }
 
 }

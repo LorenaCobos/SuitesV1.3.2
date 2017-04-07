@@ -47,7 +47,8 @@
             var servidor = '<%=servidor%>';
             var puerto = '<%=serverPort%>';
 
-            var inicioHttp = "http://" + servidor + ":" + puerto;
+            //var inicioHttp = "http://" + servidor + ":" + puerto;
+            var inicioHttp = "http://10.19.0.194:8080";
             servidor = '<%=servidor%>';
             baseSecure = "http://<%=servidor%>" + ":" + puerto + contexto;// ":8080"; // ":9400";
             baseNormal = "http://<%=servidor%>" + ":" + puerto + contexto; //":8080";// ":8080";  
@@ -130,7 +131,7 @@
             </footer>
         </aside>
         <footer class="container-fluid text-center foo">
-            <p><strong>Superboletos.</strong></p>
+            <p><strong></strong></p>
         </footer>
         <br style="clear:both"/>
          

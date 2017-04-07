@@ -13,6 +13,7 @@ import java.io.Serializable;
  * @author Fabian Molar
  */
 public class EventoSeleccionadoEntidad extends BaseEntidad implements Serializable{
+     private int fehca;
     private int eventoId;
     private String evento;
     private String fechaPresentacion;
@@ -192,5 +193,19 @@ public class EventoSeleccionadoEntidad extends BaseEntidad implements Serializab
      */
     public void setNumeroInvitaciones(int numeroInvitaciones) {
         this.numeroInvitaciones = numeroInvitaciones;
+    }
+
+    /**
+     * @return the fehca
+     */
+    public int getFehca() {
+        return fehca;
+    }
+
+    /**
+     * @param fehca the fehca to set
+     */
+    public void setFehca(int fehca) {
+        this.fehca = fehca;
     }
 }

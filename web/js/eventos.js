@@ -1,9 +1,35 @@
 function inicioGeneral() {
+       /*if(getQueryVariable('r')!=false)
+        {
+            $("#selectRecinto").val(getQueryVariable('r'));
+            bloquear();
+            dwrEvento.getSuitesUsuario($("#selectRecinto").val(),0,eventos.getSuitesUsuarioCall);
+            alert(getQueryVariable('s'));
+            $("#selectSuite").val();
+            
+        }*/
     eventos.cargaInicial();
+    
+   
+}
+function getQueryVariable(variable) {
+   var query = window.location.search.substring(1);
+   var vars = query.split("&");
+   for (var i=0; i < vars.length; i++) {
+       var pair = vars[i].split("=");
+       if(pair[0] == variable) {
+           return pair[1];
+       }
+   }
+   return false;
 }
 
+var r;
+var s;
 var eventos = {
+    
     cargaInicial: function () {
+ 
         $("#txtFechaInicio").datepicker({changeMonth: true,dateFormat: 'dd/mm/yy',
             changeYear: true,
             showButtonPanel: true,
@@ -32,6 +58,8 @@ var eventos = {
                 alertaError(error, seleccion);
             }
             else{
+                    //r =$("#selectRecinto").val();
+                    //s=$("#selectSuite").val();
                     eventos.obtenerEventos();
                 }
         });
@@ -59,8 +87,9 @@ var eventos = {
         });
 
         event.preventDefault();
-        eventos.obtenerEventos();
 
+        eventos.obtenerEventos();
+      
 
     },
     getSuitesUsuarioCall : function(data){
@@ -72,7 +101,6 @@ var eventos = {
         }
     },
     obtenerEventos: function () {
-        
         if($("#selectSuite").val()!==null&&$("#selectRecinto").val()!==null){
         dwrEvento.getSuitesPresentacionesUsuario(
                 Aes.Ctr.encrypt($("#selectRecinto").val(), "", 1),
@@ -116,7 +144,7 @@ var eventos = {
                         +  '<a href="#" >'
                         +  '<img id="imgT" class="img-thumbnail panel-image"'                                 
                                 +  'src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg"'
-                                + 'onClick="(eventos.irDetalle(' + data[i].eventoId + ', \'' + data[i].recinto + '\',\'' + data[i].fechaPresentacion + '\',\'' + data[i].evento + '\',' + data[i].presentacionId + ',' + data[i].lugaresDisponibles + ',' + data[i].cantidadEstacionamiento + ',' + data[i].invitaciones + ',' + data[i].estacionamientoId+',\''+ data[i].nombreSuite+ '\'))") src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg' + '" alt="" class="img-thumbnail"/>'
+                                + 'onClick="(eventos.irDetalle('+  data[i].eventoId + ', \'' + data[i].recinto + '\',\'' + data[i].fechaPresentacion + '\',\'' + data[i].evento + '\',' + data[i].presentacionId + ',' + data[i].lugaresDisponibles + ',' + data[i].cantidadEstacionamiento + ',' + data[i].invitaciones + ',' + data[i].estacionamientoId+',\''+ data[i].nombreSuite+ '\'))") src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg' + '" alt="" class="img-thumbnail"/>'
                         +  '</a>'
                         +  '</div>'
                         +  '<div class="col-md-6 col-sm-12 col-xs-12">'
@@ -256,11 +284,12 @@ var eventos = {
 
     },
     irDetalleForm: function (eventoId, recinto, fechaPresentacion, evento, presentacionId,  boletos, estacionamientos, invitaciones, estacionamientoId,nombreSuite) {
+        //$("#formulario").attr("action",baseNormal+"/s/detalleEvento.do?&r="+r+"&s="+s);
         $("#formulario").attr("action",baseNormal+"/s/detalleEvento.do");
+        
         var formulario = $("#formulario");
 
         var suiteId = $("#selectSuite").val();
-
         formulario.append(
                 $("<input/>",
                         {
@@ -361,10 +390,11 @@ var eventos = {
         //$("#contForm").html("");
         //$("#formulario").append(formulario);
         $("#formulario").submit();
-    }
+    },
+ llenar:function (nombre)
+        {
+            $("#selectRecinto").val(nombre);
+        }
 
 
-
-};
-
-
+}

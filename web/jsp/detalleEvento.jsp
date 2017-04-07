@@ -21,7 +21,6 @@
     </span>
     
 </section>
-
 <input type="hidden" id="hdneventoId" value="${evento.eventoId}">
 <input type="hidden" id="hdnrecinto" value="${evento.recinto}">
 <input type="hidden" id="hdnfechaPresentacion" value="${evento.fechaPresentacion}">
@@ -32,7 +31,6 @@
 <input type="hidden" id="hdnnumeroBoletos" value="${evento.numeroBoletos}">
 <input type="hidden" id="hdnnumeroEstacionamientos" value="${evento.numeroEstacionamientos}">
 <input type="hidden" id="hdnnumeroInvitaciones" value="${evento.numeroInvitaciones}">
-
     <div id="eventosWidget">    
         <div class="panel row panel-horizontal panel-info" id="evento11563">
             <div class="col-md-5 col-sm-6 col-xs-6" style="text-align: center">
@@ -64,7 +62,7 @@
                      <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="small-box bg-aqua">
                            <div class="inner">
-                                <h3>${evento.numeroBoletos}</h3>
+                                <h3><span id="cantidadBoletos" /></h3>
                                 <p>Boletos</p>
                             </div>
                             <div class="icon">
@@ -76,7 +74,7 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="small-box bg-olive">
                            <div class="inner">
-                                <h3>${evento.numeroEstacionamientos}</h3>
+                                <h3> <span id="cantidadEstacionamientos"  /></h3>
                                 <p>Estacionamientos</p>
                             </div>
                             <div class="icon">
@@ -88,7 +86,7 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="small-box bg-orange">
                            <div class="inner">
-                                <h3>${evento.numeroInvitaciones}</h3>
+                                <h3><span id="cantidadInvitacion"  /></h3>
                                 <p>Invitaciones</p>
                             </div>
                             <div class="icon">
@@ -129,8 +127,8 @@
                                 
                                 <input type="number"  min="0" max="24" maxlength="2" placeholder="# Boletos"   
                                        pattern="[0-9]" name="txtBoletos" id="txtBoletos" 
-                                       class="numeric form-control text-center">
-                               
+                                       class="numeric form-control text-center" onkeypress="validar(event)">
+                                <span style="color:red" id="dato"></span>
                             </div> 
                             <div class="col-md-1 col-sm-1 col-xs-2 ">
                                 <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" 

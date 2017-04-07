@@ -23,7 +23,13 @@ var si_n ="Sí";
 var no ="No";
 var inactivo ="Inactivo ";
 var guardadoExito ="Guardado Correctamente ";
-var renvioinvita="La invitación se ha reenviado correctamente";
+
+var envioinvita="La invitaci&oacute;n se han enviado correctamente";
+var renvioinvita="La invitaci&oacute;n se han reenviado correctamente";
+var envioboletos="Los boletos se han enviado correctamente";
+var renvioboletos="Los boletos se han reenviado correctamente";
+var cancelacioninvita="La invitaci&oacute;n se han cancelado correctamente";
+
 var errorTituloGenerico="Ha ocurrido un error";
 var errorMensajeGenerico="Por favor intente nuevamente";
 var guardarTituloGenerico="Registro guardado";
@@ -85,7 +91,7 @@ var cambiarEstatusEvento="&iquest;Desea cambiar el estatus del Evento XX a YY?";
 
 //Eventos Usuarios
 var boleto_impreso = "Boleto(s)";
-var boleto_Estacionamiento = "Estacionamineto(s)";
+var boleto_Estacionamiento = "Estacionamiento(s)";
 var impreso = "impreso";
 var boleto_cancelado = "Boleto(s) cancelado(s)";
 var boleto_enviado = "enviado(s)";
@@ -123,8 +129,7 @@ var correoInvalido="Correo electr&oacute;nico inv&aacutelido"
 
 //Estacionamientos
 var errorEstacionamientoNoValido="La cantidad de estacionamiento excede el limite permitido, por favor seleccione una cantidad menor";
-var pesoImagenError="El peso de la imagen en kb excede el limite permitido";
-var boletos ="Boletos"; 
+var pesoImagenError="El peso de la imagen  excede el limite permitido de 50  kb";
 var estacionamientos ="Estacionamientos"; 
 var estacionamiento ="Estacionamiento"; 
 var invitaciones ="Invitaciones"; 

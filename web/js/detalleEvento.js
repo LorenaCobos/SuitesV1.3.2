@@ -1,12 +1,41 @@
 function inicioGeneral() {
     detalleEvento.cargaInicial();
 }
+/*function getQueryVariable(variable) {
+   var query = window.location.search.substring(1);
+   var vars = query.split("&");
+   for (var i=0; i < vars.length; i++) {
+       var pair = vars[i].split("=");
+       if(pair[0] == variable) {
+           return pair[1];
+       }
+   }
+   return false;
+}*/
+var accion="";
+var boletos;
+var boletoxt;
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==13) {
+    boletos=$("#hdnnumeroBoletos").val();
+    boletoxt=$("#txtBoletos").val();
+    if(boletos==0)
+     { 
+       alertaError(error, "No cuenta con boletos suficientes");
+       $("#txtBoletos").val("");
+     }
+    }
+    if(boletoxt==0)
+     {dato.innerText = "";}
+    }
 
 var detalleEvento = {
     limite: 0,
     limiteEstacionamiento: 0,
     urlImprimir: "",
     cargaInicial: function() {
+        dato = document.getElementById('dato');
          document.getElementById('inptCorreo').addEventListener('input', function() {
             campo = event.target;
             valido = document.getElementById('emailOK');
@@ -15,16 +44,25 @@ var detalleEvento = {
             if (emailRegex.test(campo.value)) {
               valido.innerText = "";
             } else {
-              valido.innerText = "coreo electronico incorrecto";
+              valido.innerText = "correo electrónico incorrecto";
             }
 
         });
         $("#buttonImprimir").click(function(event) {
-            event.preventDefault();
-
-            if ($("#formSuite").valid()) {                
-                alertaConfirmacion(confirmacion, msgInvitacionImprimir, detalleEvento.imprimirPDF);
-            }
+            boletos=$("#hdnnumeroBoletos").val();
+            boletoxt=$("#txtBoletos").val();
+             if(boletos==0)
+             { 
+                alertaError(error, "No cuenta con boletos suficientes");
+                $("#txtBoletos").val("");
+             }
+             else
+             {
+                event.preventDefault();
+                if ($("#formSuite").valid()) {                
+                    alertaConfirmacion(confirmacion, msgInvitacionImprimir, detalleEvento.imprimirPDF);
+                }
+             }
             //detalleEvento.imprimirPDF();
         });
         $("#buttonImprimirEsta").click(function(event) {
@@ -38,6 +76,9 @@ var detalleEvento = {
         $("#buttonRegresar").click(function(event) {
             event.preventDefault();
             navaegacion('eventos');
+          // location.href = "/Suites/s/eventos.do?&r="+getQueryVariable('r')+"&s="+getQueryVariable('s');  
+            //eventos.cargaInicial();
+            
         });
         $("#btnEnviar").click(function(event) {
             event.preventDefault();
@@ -128,6 +169,7 @@ var detalleEvento = {
                     number: true,
                     maxlength: 2,
                     min: 1
+                    
                 }
             }
         });
@@ -388,6 +430,7 @@ var detalleEvento = {
     construirTabla: function(data) {
         $("#cantidadBoletos").html("" + data.lugaresDisponibles + "");
         $("#cantidadEstacionamientos").html("" + data.estacionamientosDisponibles + "");
+        $("#cantidadInvitacion").html("" + data.invitacion_ + "");
         detalleEvento.limite = data.lugaresDisponibles;
         detalleEvento.limiteEstacionamiento= data.estacionamientosDisponibles;
         
@@ -602,7 +645,16 @@ var detalleEvento = {
                             alertaError(error, sesion_);
                         break;
                         case 1:
-                             alertaInformacion(informacion, renvioinvita);
+                            if(accion=="Cancelar")
+                            {alertaInformacion(informacion, cancelacioninvita);}
+                             if(accion=="ReEnviar")
+                            {alertaInformacion(informacion, renvioinvita);}
+                             if(accion=="EnviarBoletos")
+                             {alertaInformacion(informacion, envioboletos);}
+                             if(accion=="RenviarBoletos")
+                             {alertaInformacion(informacion, renvioboletos);}
+                             if(accion=="")
+                             {alertaInformacion(informacion, envioinvita);}
                             break;
                         case 2:
                             alertaInformacion(informacion, invitacion_insuficientesLugares);
@@ -637,21 +689,31 @@ var detalleEvento = {
         }
     },
     preguntaAccion: function(transferencia, estatus, reenvio) {
-
-
         var msg = "";
 
         if (estatus === 3 && reenvio === 0)
+        {
+            accion="Cancelar"
             msg = msgInvitacionCancelar;
+        }
 
         if (estatus === 4 && reenvio === 1)
+        {
+            accion="ReEnviar"
             msg = msgInvitacionReenviar;
+        }
 
         if (estatus === 2 && reenvio === 0)
+        {
+            accion="EnviarBoletos"
             msg = msgInvitacionAceptar;
+        }
 
         if (estatus === 2 && reenvio === 1)
+        {
+            accion="RenviarBoletos"
            msg = msgBoletosReenviar_;
+       }
 
         //cambiarEstatusUsuario.replace("XX", nombre).replace("YY", (estatus === 5 ? inactivo : activo))
         alertaConfirmacion(confirmacion, msg, detalleEvento.actualizarInitacion, [transferencia, estatus, reenvio]);
