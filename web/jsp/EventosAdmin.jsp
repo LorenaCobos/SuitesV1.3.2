@@ -64,7 +64,7 @@
                     </h4>
                 </a>
             </div>
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapse1" class="panel-collapse">
                 <div class="panel-body">
                     <div class="row">
 

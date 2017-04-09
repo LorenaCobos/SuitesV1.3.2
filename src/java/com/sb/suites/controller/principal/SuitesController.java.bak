@@ -194,8 +194,8 @@ public class SuitesController extends BaseController implements Serializable {
         }
     }
 
-    @RequestMapping(value = "/s/eventos", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView eventos(@ModelAttribute("command") EventoSeleccionadoEntidad eventoSeleccionado, HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
+    @RequestMapping(value = "/s/eventos", method = RequestMethod.GET)
+    public ModelAndView eventos(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
@@ -209,19 +209,13 @@ public class SuitesController extends BaseController implements Serializable {
             modeloVista.addObject("contexto", contexto);
             modeloVista.addObject("menu", getMenuModulosUsuario(req, session));
             modeloVista.addObject("user", getUser(req, session));
-            modeloVista.addObject("evento", eventoSeleccionado);
             ArrayList<CatalogoEntidad> recintos = catalogo.getRecintos(usuario.getUsuarioId());
             modeloVista.addObject("recintos", recintos);
-            
-            if (recintos != null && eventoSeleccionado.getRecintoBusquedaId() != 0) {
-                modeloVista.addObject("suites", catalogo.getSuitesUsuario(eventoSeleccionado.getRecintoBusquedaId(), 0, usuario.getUsuarioId()));
-            } else if (recintos != null && recintos.size() == 1) {
+            if (recintos != null && recintos.size() == 1) {
                 modeloVista.addObject("suites", catalogo.getSuitesUsuario(recintos.get(0).getId(), 0, usuario.getUsuarioId()));
             } else if (recintos != null && recintos.size() >= 2) {
                 modeloVista.addObject("suites", new ArrayList<CatalogoEntidad>());
             }
-            
-           
 
             modeloVista.addObject("estatus", catalogo.getEstatus(req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("funcionalidades", session.getAttribute("funcionalidades") == null ? new ArrayList<FuncionalidadOperacion>() : (ArrayList<FuncionalidadOperacion>) session.getAttribute("funcionalidades"));

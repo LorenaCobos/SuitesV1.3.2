@@ -64,7 +64,7 @@
                 </a>
             </div>
 
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapse1" class="panel-collapse">
                 <div class="panel-body">
                     <div class="row">
 
@@ -166,7 +166,7 @@
 
     </div> 
 
-    <div class="CSSTableResults table-responsive">
+    <div class="CSSTableResults table-responsive table-fixed">
         <table class="table-condensed table-responsive table-hover">
             <thead>
                 <tr>

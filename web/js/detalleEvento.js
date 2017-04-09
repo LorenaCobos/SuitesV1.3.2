@@ -73,12 +73,10 @@ var detalleEvento = {
             }
             //detalleEvento.imprimirPDF();
         });
-        $("#buttonRegresar").click(function(event) {
+        $("#buttonRegresar1").click(function(event) {
             event.preventDefault();
-            navaegacion('eventos');
-          // location.href = "/Suites/s/eventos.do?&r="+getQueryVariable('r')+"&s="+getQueryVariable('s');  
-            //eventos.cargaInicial();
-            
+            //navaegacion('eventos');
+            detalleEvento.regresarEventos();
         });
         $("#btnEnviar").click(function(event) {
             event.preventDefault();
@@ -153,11 +151,39 @@ var detalleEvento = {
                         e.preventDefault();
                     }
                 });
+                
+        $("#formSuite").bind("keypress", function(e){
+            if ( e.keyCode == 13 ) {
+                event.preventDefault();
+
+                if ($("#formSuite").valid()) {                
+                    alertaConfirmacion(confirmacion, msgInvitacionImprimir, detalleEvento.imprimirPDF);
+                }
+            }
+        });
+        
+        $("#formSuiteEstacionamiento").bind("keypress", function(e){
+            if ( e.keyCode == 13 ) {
+                event.preventDefault();
+
+                if ($("#formSuiteEstacionamiento").valid()) {
+                    alertaConfirmacion(confirmacion, msgInvitacionEstaImprimir, detalleEvento.imprimirEstacionamientoPDF);
+                }
+            }
+        });
+        
+        $("#formSuiteVenta").bind("keypress", function(e){
+            if ( e.keyCode == 13 ) {
+                event.preventDefault();
+
+            }
+        });
                
         detalleEvento.obtenerResumen();
 //        detalleEvento.autocomplete();
         detalleEvento.validaciones();
         detalleEvento.validacionesEnvio();
+        
 
     },
     validaciones: function() {
@@ -395,37 +421,39 @@ var detalleEvento = {
     },
     obtenerResumen: function() {
         dwrEvento.resumenImpresos(
-                Aes.Ctr.encrypt($("#hdneventoId").val(), "", 1),
-                Aes.Ctr.encrypt($("#hdnpresentacionId").val(), "", 1),
-                Aes.Ctr.encrypt($("#hdnsuiteId").val(), "", 1),
-                {
-                    callback: function(data) {
-                        switch (data) {
-                            case null:
-                             alertaError(error, sesion_);
-                                break;
-                            case "":
-                            case -1:
-                                alertaErrorGenerico();
-                                break;
-                            case -2:
-                            case '-2':
-                                alertaErrorGenerico();
-                                break;
-                            default:
-                                bloquear();
-                                detalleEvento.construirTabla(data);
-                                break;
-                        }
-                    },
-                    preHook: function() {
-                        bloquear();
-                    },
-                    postHook: function() {
-                        desbloquear();
+            Aes.Ctr.encrypt($("#hdneventoId").val(), "", 1),
+            Aes.Ctr.encrypt($("#hdnpresentacionId").val(), "", 1),
+            Aes.Ctr.encrypt($("#hdnsuiteId").val(), "", 1),
+            {
+                callback: function(data) {
+                    switch (data) {
+                        case null:
+                         alertaError(error, sesion_);
+                            break;
+                        case "":
+                        case -1:
+                            alertaErrorGenerico();
+                            break;
+                        case -2:
+                        case '-2':
+                            alertaErrorGenerico();
+                            break;
+                        default:
+                            bloquear();
+                            detalleEvento.construirTabla(data);
+                            break;
                     }
+                    
+                    detalleEvento.mostrarInvitaciones();
+                },
+                preHook: function() {
+                    bloquear();
+                },
+                postHook: function() {
+                    desbloquear();
+                }
 
-                });
+            });
     },
     construirTabla: function(data) {
         $("#cantidadBoletos").html("" + data.lugaresDisponibles + "");
@@ -760,6 +788,67 @@ var detalleEvento = {
                 window.open(baseRep + "/suites/manuales/Guia_rapida_Suites_Invitar.pdf", '_blank');
                 break;
         }
+    },
+    
+    regresarEventos: function() {
+        $("#formulario").attr("action",baseNormal+"/s/eventos.do");
+        
+        var formulario = $("#formulario");
+
+        var recintoBusquedaId = $("#hdnrecintoBusquedaId").val();
+        var suiteBusquedaId   = $("#hdnsuiteBusquedaId").val(); 
+        var eventoBusqueda    = $("#hdneventoBusqueda").val();
+        var fechaIniBusqueda  = $("#hdnfechaIniBusqueda").val();
+        var fechaFinBusqueda  = $("#hdnfechaFinBusqueda").val();
+
+        formulario.append(
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'recintoBusquedaId',
+                        value: $.trim(recintoBusquedaId),
+                        id: 'recintoBusquedaId'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'suiteBusquedaId',
+                        value: $.trim(suiteBusquedaId),
+                        id: 'suiteBusquedaId'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'eventoBusqueda',
+                        value: $.trim(eventoBusqueda),
+                        id: 'eventoBusqueda'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'fechaIniBusqueda',
+                        value: $.trim(fechaIniBusqueda),
+                        id: 'fechaIniBusqueda'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'fechaFinBusqueda',
+                        value: $.trim(fechaFinBusqueda),
+                        id: 'fechaFinBusqueda'
+                    }
+            )
+        );
+
+        $("#formulario").submit();
     }
 
 };

@@ -5,7 +5,19 @@
  */
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
-
+::-webkit-scrollbar
+{
+-webkit-appearance: none;
+width: 14px;
+height: 14px;
+}
+ 
+::-webkit-scrollbar-thumb
+{
+border-radius: 8px;
+border: 3px solid #fff;
+background-color: rgba(0, 0, 0, .3);
+}
 
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;  

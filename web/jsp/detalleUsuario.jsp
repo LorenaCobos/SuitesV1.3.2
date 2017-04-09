@@ -24,7 +24,7 @@
     validacion_();
 </script>
 <section style="width: 90%;  margin-bottom: 50px;">
-    <span class="label-titulo-seccion col-md-10 col-sm-9 col-xs-12" ><s:message code="key_generico_usuario_abc"/></span>
+    <span id="idusuariodetalle" class="label-titulo-seccion col-md-10 col-sm-9 col-xs-12" ><s:message code="key_generico_usuario_abc"/></span>
     <span style="float: right" class="col-md-2 col-sm-3 col-xs-12 text-xs-right">
         <a href="#" name="buttonRegresar" onclick="bloquear();" id="buttonRegresar">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<s:message code="key_button_regresar"/>
@@ -318,11 +318,10 @@
                                             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                         </div>
                                          <div class="form-group">
-                                            <div class="selectorUsuario">
                                                 <input id="buttonGuardarPassCambio" name="buttonGuardarPassCambio"
                                                    class="btn btn-lg  btn-block btn-warning" 
                                                    value="<s:message code="key_generico_guardar"/>" type="submit">  
-                                            </div>
+    
                                         </div>
                                     </form>
                                 </fieldset>

@@ -64,9 +64,9 @@ public class EventosDAO extends BaseDAO {
                     if(suiteEntity.getEstatusId()==6 || suiteEntity.getEstatusId()==0)
                     {listaResultados.add(suiteEntity);}  
                 }
-                else
+                if(estatus.equals("ACTIVO"))
                 {
-                    if(suiteEntity.getEstatusId()==5 )
+                     if(suiteEntity.getEstatusId()==5 )
                     {listaResultados.add(suiteEntity);}
                 }
             }
@@ -194,7 +194,7 @@ public class EventosDAO extends BaseDAO {
 	ResultSet rs = null;
         int disponibles = 0;
         int estacionamientos = 0;
-         int invitacion = 0;
+        int invitacion = 0;
         final String QUERY = "{call "+SUITES_PKG+".DETALLE_IMPRESIONES_PRC( ?,"+ // usuarioId 
                                                                             "?," +// eventoId
                                                                             "?," +// presentacionId

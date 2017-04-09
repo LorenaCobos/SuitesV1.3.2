@@ -7,7 +7,7 @@
 var horario ="La fecha es incorrecta";
 var horario_ ="La fecha es correcta";
 var seleccion="Seleccionar un Recinto";
-var sesion_="Error de Session , Favor de iniciar Nuevamente";
+var sesion_="Favor de iniciar sesión Nuevamente";
 var invalido ="Invalido";
 var error ="Error";
 var errorInterno ="Error Interno";

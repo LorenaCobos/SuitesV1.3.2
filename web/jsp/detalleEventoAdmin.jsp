@@ -17,7 +17,7 @@
 
 
 <div class="tilular-seccion">
-    <p class="p-titular-seccion"><s:message code="key_generico_evento_abc"/></p>
+    <p id="ideventodetalle" class="p-titular-seccion"><s:message code="key_generico_evento_abc"/></p>
 </div>
 
 
@@ -96,7 +96,7 @@
 
 
 
-    <div class="CSSTableResults">
+    <div class="CSSTableResults ">
         <table class="table-condensed table-responsive table-hover">
             <tbody><tr>
                     <td>

@@ -372,8 +372,8 @@ function uploadFiles(event)
     oMyForm.append("id", evento);
 
     $.ajax({
-        //url: baseNormal + '/upload.do',
-        url:'http://10.19.0.194:8080/Suites/upload.do',
+        url: baseNormal + '/upload.do',
+       // url:'http://10.19.0.193:8080/Suites/upload.do',
         data: oMyForm,
         dataType: 'text',
         processData: false,

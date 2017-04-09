@@ -172,8 +172,7 @@
         </put-list-attribute>
     </definition>
     
-    <definition name="logout"  template="/tiles/loginTemplate.jsp">
-        <put-attribute name="header" value="/tiles/plantilla/headerLogin.jsp" />
+    <definition name="logout" extends="base.definition">
         <put-attribute name="menu" value="/tiles/plantilla/menuLogin.jsp" />
         <put-attribute name="body" value="/jsp/logout.jsp" />
         <put-list-attribute name="librerias">   

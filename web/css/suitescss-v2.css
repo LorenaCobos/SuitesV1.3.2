@@ -56,6 +56,10 @@ and open the template in the editor.
 {  
      .nav-tabs>li 
      {float: none!important;}
+     #buttonRegresar{margin-left: 205px;}
+     #ideventodetalle{ font-size: 16px;margin-left: -10px!important;margin-top: 10px;}
+     #idusuariodetalle{ font-size: 15px;margin-left: -10px!important;margin-top: 10px; }
+     #idsuitedetalle{ font-size: 16px;margin-left: -10px!important;margin-top: 10px; }
 }
 
 /*1134-1233*/
@@ -130,10 +134,10 @@ and open the template in the editor.
  * Core: General Layout Style
  * -------------------------
  */
-html,
+/*html,
 body {
   height: 100px!important;
-}
+}*/
 .layout-boxed html,
 .layout-boxed body {
   height: 100%;

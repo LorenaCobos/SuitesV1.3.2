@@ -13,14 +13,14 @@ var logout = {
         dwrLogin.logoutUsuario(
                 {
                     callback: function () {
-                        bloquear();
+                        //bloquear();
                         logout.operacionInicial();
                     },
                     preHook: function () {
-                        bloquear();
+                         //$("#logoutModal").modal('show');
                     },
                     postHook: function () {
-                        desbloquear();
+                        //desbloquear();
                     }
                 });
 
@@ -42,10 +42,10 @@ var logout = {
 
             },
             preHook: function () {
-                bloquear();
+                //bloquear();
             },
             postHook: function () {
-                desbloquear();
+                //desbloquear();
             }
 
         });

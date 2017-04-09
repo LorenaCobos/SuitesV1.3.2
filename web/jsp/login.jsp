@@ -16,7 +16,7 @@
         <div class="login-header-box">
             <div class="login-header-image col-sm-7"> </div>
            
-            <div class="col-sm-4" > 
+            <div class="col-md-4 col-sm-4 col-xs-4" > 
                 <s:message code="key_login_box"/>
             </div>
         </div>
@@ -28,37 +28,39 @@
             
             <form id="formLogin" >
                 <div class="row">
-                    <div class="col-sm-2 text-left">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-left">
                         <label for="textfield2" class="control-label" ><s:message code="key_placeholder_usuario"/>:</label>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="text" name="textfield" value="" id="textfield" class="form-control">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2 text-left">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-left">
                         <label for="textfield2"  class="control-label"><s:message code="key_placeholder_password"/>:</label>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="password" name="password" value=""  id="password" class="form-control">
                     </div>
                 </div>
-                <div class="row col-sm-12">
+                <div class=" col-md-8 col-sm-8 col-xs-8 text-left">
 
-                    <div class="col-sm-4 text-center ">
+                    <div >
                         <a data-target="#usuarioModal" data-toggle="modal" id ="recuperaUsuario" href="#">
                             <small><s:message code="key_login_olvide_usuario"/></small></a>
                     </div>
 
-                    <div class="col-sm-4 text-center">
+                    <div >
                         <a data-target="#usuarioModal" data-toggle="modal" id="recuperaPassword" href="#">
                             <small><s:message code="key_login_olvide_parword"/></small></a>
                     </div>
+                   
+                </div>
                     
-                    <div class="col-sm-4 text-right">
-                        <button type="button" name="button" id="button" value="<s:message code="key_generico_aceptar"/>" 
-                            class="button btn-default "><s:message code="key_generico_aceptar"/></button>
-                    </div>
+                <div class=" col-md-4 col-sm-4 col-xs-4 text-left">
+                    <button type="button" name="button" id="button" value="<s:message code="key_generico_aceptar"/>" 
+                        class="button btn-default "><s:message code="key_generico_aceptar"/></button>
+ 
                 </div>
 
                 
@@ -91,7 +93,7 @@
       </div>
       <div class="modal-body">
           <div id="divAlertaRecuperacion"></div>
-          <div class="col-md-12">
+          <div id="divModal12" class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="text-center">
@@ -104,7 +106,8 @@
                             <div class="panel-body">
                                 <fieldset>
                                     <div class="input-group form-group">
-                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        <span class="input-group-addon" id="modalIconMail"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        
                                         <input class="form-control" placeholder="<s:message code="key_placeholder_correo"/>"  
                                                name="correoRecuperacion" id="correoRecuperacion" type="email">
                                     </div>   
@@ -129,56 +132,12 @@
       </div>
     <div class="modal-footer" style="border-top: 0px; padding-top: 0px;">
         <div class="col-md-12">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <button class="button btn-default " data-dismiss="modal" aria-hidden="true">
                 <s:message code="key_login_cancelar"/></button>
 	</div>	
     </div>
   </div>
   </div>
 </div>
-
-<%--<div class="container-fluid">
-
-
-    <div class="row">
-        <form id="formLogin" >
-            <div class="col-sm-1 text-left">
-                <label for="textfield2" class="control-label" ><s:message code="key_placeholder_usuario"/>:</label>
-            </div>
-            <div class="col-sm-4">
-                <input type="text" name="textfield" value="" id="textfield" class="form-control">
-            </div>
-            <div class="col-sm-2 text-left">
-                <label for="textfield2"  class="control-label"><s:message code="key_placeholder_password"/>:</label>
-            </div>
-            <div class="col-sm-3">
-                <input type="password" name="password" value=""  id="password" class="form-control">
-            </div>
-            <div class="col-sm-2 text-center">
-                <button type="button" name="button" id="button" value="<s:message code="key_generico_aceptar"/>" class="button btn-default "><s:message code="key_generico_aceptar"/></button>
-            </div>
-        </form>
-    </div>
-
-    <hr>
-    <div class="row">
-
-        <div class="col-sm-3 text-center ">
-            <a id="usuarioLnk" ><small><s:message code="key_login_olvide_usuario"/></small></a>
-        </div>
-
-        <div class="col-sm-3 text-center">
-            <a id="pwdLnk"><small><s:message code="key_login_olvide_parword"/></small></a>
-        </div>
-
-        <div class="col-sm-3">
-
-        </div>
-
-    </div>
-    <div id="contForm"/>
-    </div>
-    
-</div>--%>
-
+      
 

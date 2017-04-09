@@ -1,6 +1,6 @@
 package com.sb.suites.dao.catalogos;
 
-import com.sb.suites.bss.utils.CommonUtils;
+import com.sb.suites.cmm.AnotacionMetodoAuditoria;
 import com.sb.suites.cmm.ExceptionCmm;
 import com.sb.suites.dao.BaseDAO;
 import com.sb.suites.entidades.usuarios.CatalogoEntidad;
@@ -157,7 +157,7 @@ public class CatalogosDAO extends BaseDAO {
              listaResultados.add(catalogoEntity_);*/
              cleanVariables(rs, conn);
         }
-        CommonUtils.sortCatalogoByName(listaResultados);
+       
         return listaResultados;
     }
     

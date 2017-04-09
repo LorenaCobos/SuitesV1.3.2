@@ -36,7 +36,7 @@
                 </a>
             </div>
 
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapse1" class="panel-collapse">
                 <div class="panel-body">
 
                     <div class="row">
@@ -44,12 +44,13 @@
                             <label for="textfield2" class="control-label" ><s:message code="key_suite_recinto"/>:</label>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                            <select name="selectRecinto" id="selectRecinto" class="form-control" onchange="cambiarHeader()">
+                            <select name="selectRecinto" id="selectRecinto" class="form-control" onchange="cambiarHeader()"  >
                                 <c:if test="${fn:length(recintos)>1}">
                                     <option value="0">Seleccione</option>
                                 </c:if>
                                 <c:forEach var="recinto" items="${recintos}">
-                                    <option value="${recinto.id}">${recinto.nombre}</option>
+                                    <option value="${recinto.id}" ${recinto.id == evento.recintoBusquedaId ? 'selected="selected"' : ''}>
+                                        ${recinto.nombre}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -63,7 +64,8 @@
                                     <option value="0">Seleccione</option>
                                 </c:if>
                                 <c:forEach var="suite" items="${suites}">
-                                    <option value="${suite.id}">${suite.nombre}&nbsp;${suite.clave}</option>
+                                    <option value="${suite.id}" ${suite.id == evento.suiteBusquedaId ? 'selected="selected"' : ''}>
+                                        ${suite.nombre}&nbsp;${suite.clave}</option>
                                 </c:forEach>
                             </select>
                         </div> 
@@ -75,7 +77,8 @@
                             <label for="textfield2" class="control-label" ><s:message code="key_placeholder_evento"/>:</label>
                         </div>
                         <div class="col-md-4 col-sm-10 col-xs-12">
-                            <input type="text" name="textfieldEvento" id="textfieldEvento" class="form-control">
+                            <input type="text" name="eventoBusqueda" id="eventoBusqueda" 
+                                   value="${evento.eventoBusqueda}" class="form-control">
                         </div>                        
 
                         <div class="col-md-1 col-sm-2 col-xs-12 text-left">
@@ -86,11 +89,15 @@
                             <div class="row">
 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_inicio"/>" name="txtFechaInicio" id="txtFechaInicio" class="form-control" style="background-color:white;">
+                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_inicio"/>"
+                                           name="fechaIniBusqueda" id="fechaIniBusqueda" class="form-control" 
+                                           style="background-color:white;" value="${evento.fechaIniBusqueda}">
                                 </div>
 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_fin"/>" name="txtFechaFin" id="txtFechaFin" class="form-control" style="background-color:white;">
+                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_fin"/>" 
+                                           name="fechaFinBusqueda" id="fechaFinBusqueda" class="form-control" 
+                                           style="background-color:white;" value="${evento.fechaFinBusqueda}">
                                 </div>
                             </div>
                         </div>
@@ -161,50 +168,26 @@
     <form:form id="formulario" name="formulario"  method="post" action="">
 
     </form:form>
-
-
-</div>                
-
-
-
+</div>  
 
 <script type="text/javascript" src="<%= request.getContextPath()%>/js/bootstrap-toolkit.min.js"></script>
 
 
 <script>
-                                (function($, document, window, viewport) {
-                                    var colapsa = function() {
+    (function($, document, window, viewport) {
+        var colapsa = function() {
 
-                                        os = getMobileOperatingSystem();
+            os = getMobileOperatingSystem();
 
-                                        if (os.match("celular"))
-                                            $('#collapse1').removeClass('in');
-                                        else
-                                            $('#collapse1').collapse('show');
+            if (os.match("celular"))
+                $('#collapse1').removeClass('in');
+            else
+                $('#collapse1').collapse('show');
+        };
 
-                                        //if (viewport.is('xs')) {
-                                        //$('#collapse1').collapse('hide');
-                                        //$('#collapse1').removeClass('in');
-                                        //}
-                                        //if (!viewport.is('xs')) {
-                                        //$('#collapse1').collapse('show');
-                                        //}
-                                    };
+        $(document).ready(function() {
+            colapsa();
+        });
 
-                                    $(document).ready(function() {
-                                        colapsa();
-
-                                    });
-
-                                    //$(window).resize(viewport.changed(function () {
-                                    //colapsa();
-                                    //}));
-
-                                }(jQuery, document, window, ResponsiveBootstrapToolkit));
-
-
-
-
-
-
+    }(jQuery, document, window, ResponsiveBootstrapToolkit));
 </script>

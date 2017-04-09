@@ -26,6 +26,11 @@ public class EventoSeleccionadoEntidad extends BaseEntidad implements Serializab
     private int numeroBoletos;
     private int numeroEstacionamientos;
     private int numeroInvitaciones;
+    private int recintoBusquedaId;
+    private int suiteBusquedaId;
+    private String eventoBusqueda;
+    private String fechaIniBusqueda;
+    private String fechaFinBusqueda;
     
     /**
      * @return the eventoId
@@ -196,16 +201,72 @@ public class EventoSeleccionadoEntidad extends BaseEntidad implements Serializab
     }
 
     /**
-     * @return the fehca
+     * @return the recintoBusquedaId
      */
-    public int getFehca() {
-        return fehca;
+    public int getRecintoBusquedaId() {
+        return recintoBusquedaId;
     }
 
     /**
-     * @param fehca the fehca to set
+     * @param recintoBusquedaId the recintoBusquedaId to set
      */
-    public void setFehca(int fehca) {
-        this.fehca = fehca;
+    public void setRecintoBusquedaId(int recintoBusquedaId) {
+        this.recintoBusquedaId = recintoBusquedaId;
+    }
+
+    /**
+     * @return the suiteBusquedaId
+     */
+    public int getSuiteBusquedaId() {
+        return suiteBusquedaId;
+    }
+
+    /**
+     * @param suiteBusquedaId the suiteBusquedaId to set
+     */
+    public void setSuiteBusquedaId(int suiteBusquedaId) {
+        this.suiteBusquedaId = suiteBusquedaId;
+    }
+
+    /**
+     * @return the eventoBusqueda
+     */
+    public String getEventoBusqueda() {
+        return eventoBusqueda;
+    }
+
+    /**
+     * @param eventoBusqueda the eventoBusqueda to set
+     */
+    public void setEventoBusqueda(String eventoBusqueda) {
+        this.eventoBusqueda = eventoBusqueda;
+    }
+
+    /**
+     * @return the fechaIniBusqueda
+     */
+    public String getFechaIniBusqueda() {
+        return fechaIniBusqueda;
+    }
+
+    /**
+     * @param fechaIniBusqueda the fechaIniBusqueda to set
+     */
+    public void setFechaIniBusqueda(String fechaIniBusqueda) {
+        this.fechaIniBusqueda = fechaIniBusqueda;
+    }
+
+    /**
+     * @return the fechaFinBusqueda
+     */
+    public String getFechaFinBusqueda() {
+        return fechaFinBusqueda;
+    }
+
+    /**
+     * @param fechaFinBusqueda the fechaFinBusqueda to set
+     */
+    public void setFechaFinBusqueda(String fechaFinBusqueda) {
+        this.fechaFinBusqueda = fechaFinBusqueda;
     }
 }

@@ -1,7 +1,29 @@
 /* BOOTSTRAP 3.x GLOBAL STYLES
 -------------------------------------------------- */
+
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events:all;
+}
 body {
-  padding-bottom: 40px;
+  /*padding-bottom: 40px;*/
   color: #5a5a5a;
 }
 
@@ -162,6 +184,13 @@ width: 860px;
 	color: #F4F4F4;
 	font-family: 'Cinzel', Arial, Sans-Serif;
 }
+
+.logout-box {
+    width: 450px ;
+    display: inline-block;
+    padding-top: 20%;
+    padding-bottom: 10%;
+}
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
@@ -203,6 +232,13 @@ width: 860px;
   display: none;
   }
   
-  
-
 }
+
+ @media (max-width: 767px) {
+  .logout-box {
+    width: 100% !important;
+    }
+    #modalIconMail {
+        display: none;
+    }
+  }

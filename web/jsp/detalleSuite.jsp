@@ -23,7 +23,7 @@
     validacion_();
 </script>
 <section style="width: 90%; margin-bottom: 50px;">
-    <span class="label-titulo-seccion col-md-10 col-sm-9 col-xs-12" ><s:message code="key_generico_suite_abc"/></span>
+    <span id="idsuitedetalle" class="label-titulo-seccion col-md-10 col-sm-9 col-xs-12" ><s:message code="key_generico_suite_abc"/></span>
     <span style="float: right " class="col-md-2 col-sm-3 col-xs-12 text-xs-right">
         <a href="#" name="buttonRegresar" onclick="bloquear();" id="buttonRegresar">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<s:message code="key_button_regresar"/>
@@ -293,4 +293,12 @@
 </form>
 
 
-
+<script>
+    var observacion=$("#txtObservaciones").val();
+    if(observacion.trim()=="Actualizar a la infromación real de la Suite")
+    {
+        $("#txtObservaciones").val("Actualizar a la información real de la Suite");
+    }
+    else
+    {$("#txtObservaciones").val(observacion.trim());}
+</script>

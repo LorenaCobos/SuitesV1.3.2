@@ -27,10 +27,8 @@ function getQueryVariable(variable) {
 var r;
 var s;
 var eventos = {
-    
     cargaInicial: function () {
- 
-        $("#txtFechaInicio").datepicker({changeMonth: true,dateFormat: 'dd/mm/yy',
+        $("#fechaIniBusqueda").datepicker({changeMonth: true,dateFormat: 'dd/mm/yy',
             changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
@@ -40,7 +38,7 @@ var eventos = {
                     document.getElementById(this.id).value = '';
                 }
             }});
-        $("#txtFechaFin").datepicker({changeMonth: true,dateFormat: 'dd/mm/yy',
+        $("#fechaFinBusqueda").datepicker({changeMonth: true,dateFormat: 'dd/mm/yy',
             changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
@@ -66,31 +64,31 @@ var eventos = {
         
         $("#selectRecinto").change(function (event) {
             event.preventDefault();
-           if($("#selectRecinto").val()===0||$("#selectRecinto").val()==='0'){
-                var obj =document.getElementById("selectSuite");
-                dwr.util.removeAllOptions(obj);
-                dwr.util.addOptions("selectSuite", [{id:'0',nombreCompleto:'Seleccione'}], 'id', 'nombreCompleto');
-           }else{
-                bloquear();
-               dwrEvento.getSuitesUsuario($("#selectRecinto").val(),0,eventos.getSuitesUsuarioCall);
-           }
+            eventos.getSuitesUsuarios();
             
         });
          $("#buttonLimpiar").click(function(event) {
             $("#selectRecinto").val(0);
             $("#selectRecinto").change();
-            $("#textfieldEvento").val("");
-            $("#txtFechaInicio").val("");
-            $("#txtFechaFin").val("");
+            $("#eventoBusqueda").val("");
+            $("#fechaIniBusqueda").val("");
+            $("#fechaFinBusqueda").val("");
             $("#divEventos").html("");
             $("#eventosWidget").html("");
         });
 
         event.preventDefault();
-
         eventos.obtenerEventos();
-      
-
+    },
+    getSuitesUsuarios : function() {
+        if ($("#selectRecinto").val()===0||$("#selectRecinto").val()==='0') {
+            var obj =document.getElementById("selectSuite");
+            dwr.util.removeAllOptions(obj);
+            dwr.util.addOptions("selectSuite", [{id:'0',nombreCompleto:'Seleccione'}], 'id', 'nombreCompleto');
+        } else {
+            bloquear();
+            dwrEvento.getSuitesUsuario($("#selectRecinto").val(),0,eventos.getSuitesUsuarioCall);
+        }
     },
     getSuitesUsuarioCall : function(data){
         desbloquear()
@@ -101,12 +99,13 @@ var eventos = {
         }
     },
     obtenerEventos: function () {
+        
         if($("#selectSuite").val()!==null&&$("#selectRecinto").val()!==null){
         dwrEvento.getSuitesPresentacionesUsuario(
                 Aes.Ctr.encrypt($("#selectRecinto").val(), "", 1),
-                Aes.Ctr.encrypt($("#textfieldEvento").val(), "", 1),
-                Aes.Ctr.encrypt($("#txtFechaInicio").val(), "", 1),
-                Aes.Ctr.encrypt($("#txtFechaFin").val(), "", 1),
+                Aes.Ctr.encrypt($("#eventoBusqueda").val(), "", 1),
+                Aes.Ctr.encrypt($("#fechaIniBusqueda").val(), "", 1),
+                Aes.Ctr.encrypt($("#fechaFinBusqueda").val(), "", 1),
                 Aes.Ctr.encrypt($("#selectSuite").val(), "", 1),        
                         {
                             callback: function (data) {
@@ -144,7 +143,7 @@ var eventos = {
                         +  '<a href="#" >'
                         +  '<img id="imgT" class="img-thumbnail panel-image"'                                 
                                 +  'src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg"'
-                                + 'onClick="(eventos.irDetalle('+  data[i].eventoId + ', \'' + data[i].recinto + '\',\'' + data[i].fechaPresentacion + '\',\'' + data[i].evento + '\',' + data[i].presentacionId + ',' + data[i].lugaresDisponibles + ',' + data[i].cantidadEstacionamiento + ',' + data[i].invitaciones + ',' + data[i].estacionamientoId+',\''+ data[i].nombreSuite+ '\'))") src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg' + '" alt="" class="img-thumbnail"/>'
+                                + 'onClick="(eventos.irDetalle(' + data[i].eventoId + ', \'' + data[i].recinto + '\',\'' + data[i].fechaPresentacion + '\',\'' + data[i].evento + '\',' + data[i].presentacionId + ',' + data[i].lugaresDisponibles + ',' + data[i].cantidadEstacionamiento + ',' + data[i].invitaciones + ',' + data[i].estacionamientoId+',\''+ data[i].nombreSuite+ '\'))") src="' + inicioHttp + '/SuperBoletosRepositorio/thumbnails/Evento_' + data[i].eventoId + '_T.jpg' + '" alt="" class="img-thumbnail"/>'
                         +  '</a>'
                         +  '</div>'
                         +  '<div class="col-md-6 col-sm-12 col-xs-12">'
@@ -240,9 +239,18 @@ var eventos = {
         desbloquear();
       
     },
-    irDetalle: function (eventoId, recinto, fechaPresentacion, evento, presentacionId, boletos, estacionamientos, invitaciones, estacionamientoId,nombreSuite) {
+    irDetalle: function (eventoId, recinto, fechaPresentacion, evento, presentacionId, boletos, 
+                         estacionamientos, invitaciones, estacionamientoId, nombreSuite) {
         bloquear();
-        eventos.irDetalleForm(eventoId, recinto, fechaPresentacion, evento, presentacionId,  boletos, estacionamientos, invitaciones, estacionamientoId,nombreSuite);
+        var recintoBusquedaId = $("#selectRecinto").val();
+        var suiteBusquedaId   = $("#selectSuite").val(); 
+        var eventoBusqueda    = $("#eventoBusqueda").val();
+        var fechaIniBusqueda  = $("#fechaIniBusqueda").val();
+        var fechaFinBusqueda  = $("#fechaFinBusqueda").val();
+
+        eventos.irDetalleForm(eventoId, recinto, fechaPresentacion, evento, presentacionId,  boletos, 
+                                estacionamientos, invitaciones, estacionamientoId,nombreSuite,
+                                recintoBusquedaId, suiteBusquedaId, eventoBusqueda, fechaIniBusqueda, fechaFinBusqueda);
 
     },
     cambiarEstatus: function (evento, estatus, nombre) {
@@ -283,118 +291,157 @@ var eventos = {
         }
 
     },
-    irDetalleForm: function (eventoId, recinto, fechaPresentacion, evento, presentacionId,  boletos, estacionamientos, invitaciones, estacionamientoId,nombreSuite) {
-        //$("#formulario").attr("action",baseNormal+"/s/detalleEvento.do?&r="+r+"&s="+s);
+    irDetalleForm: function (eventoId, recinto, fechaPresentacion, evento, presentacionId,  boletos, 
+                            estacionamientos, invitaciones, estacionamientoId,nombreSuite,
+                            recintoBusquedaId, suiteBusquedaId, eventoBusqueda, fechaIniBusqueda, fechaFinBusqueda) {
+                                
         $("#formulario").attr("action",baseNormal+"/s/detalleEvento.do");
         
         var formulario = $("#formulario");
 
         var suiteId = $("#selectSuite").val();
+
         formulario.append(
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'eventoId',
-                            value: $.trim(eventoId),
-                            id: 'eventoId'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'evento',
-                            value: $.trim(evento),
-                            id: 'evento'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'fechaPresentacion',
-                            value: $.trim(fechaPresentacion),
-                            id: 'fechaPresentacion'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'presentacionId',
-                            value: $.trim(presentacionId),
-                            id: 'presentacionId'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'recinto',
-                            value: $.trim(recinto),
-                            id: 'recinto'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'suiteId',
-                            value: $.trim(suiteId),
-                            id: 'suiteId'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'estacionamientoId',
-                            value: $.trim(estacionamientoId),
-                            id: 'suiteId'
-                        }
-                ),
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'suite',
-                            value: $.trim(nombreSuite),
-                            id: 'suiteId'
-                        }
-                ),
-        
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'numeroBoletos',
-                            value: $.trim(boletos),
-                            id: 'numeroBoletos'
-                        }
-                ),
-        
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'numeroEstacionamientos',
-                            value: $.trim(estacionamientos),
-                            id: 'numeroEstacionamientos'
-                        }
-                ),
-        
-                $("<input/>",
-                        {
-                            type: 'hidden',
-                            name: 'numeroInvitaciones',
-                            value: $.trim(invitaciones),
-                            id: 'numeroInvitaciones'
-                        }
-                )
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'eventoId',
+                        value: $.trim(eventoId),
+                        id: 'eventoId'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'evento',
+                        value: $.trim(evento),
+                        id: 'evento'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'fechaPresentacion',
+                        value: $.trim(fechaPresentacion),
+                        id: 'fechaPresentacion'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'presentacionId',
+                        value: $.trim(presentacionId),
+                        id: 'presentacionId'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'recinto',
+                        value: $.trim(recinto),
+                        id: 'recinto'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'suiteId',
+                        value: $.trim(suiteId),
+                        id: 'suiteId'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'estacionamientoId',
+                        value: $.trim(estacionamientoId),
+                        id: 'suiteId'
+                    }
+            ),
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'suite',
+                        value: $.trim(nombreSuite),
+                        id: 'suiteId'
+                    }
+            ),
 
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'numeroBoletos',
+                        value: $.trim(boletos),
+                        id: 'numeroBoletos'
+                    }
+            ),
 
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'numeroEstacionamientos',
+                        value: $.trim(estacionamientos),
+                        id: 'numeroEstacionamientos'
+                    }
+            ),
 
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'numeroInvitaciones',
+                        value: $.trim(invitaciones),
+                        id: 'numeroInvitaciones'
+                    }
+            ),
 
-                );
-        //$("#contForm").html("");
-        //$("#formulario").append(formulario);
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'recintoBusquedaId',
+                        value: $.trim(recintoBusquedaId),
+                        id: 'recintoBusquedaId'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'suiteBusquedaId',
+                        value: $.trim(suiteBusquedaId),
+                        id: 'suiteBusquedaId'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'eventoBusqueda',
+                        value: $.trim(eventoBusqueda),
+                        id: 'eventoBusqueda'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'fechaIniBusqueda',
+                        value: $.trim(fechaIniBusqueda),
+                        id: 'fechaIniBusqueda'
+                    }
+            ),
+
+            $("<input/>",
+                    {
+                        type: 'hidden',
+                        name: 'fechaFinBusqueda',
+                        value: $.trim(fechaFinBusqueda),
+                        id: 'fechaFinBusqueda'
+                    }
+            )
+        );
+
         $("#formulario").submit();
-    },
- llenar:function (nombre)
-        {
-            $("#selectRecinto").val(nombre);
-        }
+    }
+};
 
 
-}

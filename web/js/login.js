@@ -14,6 +14,13 @@ function inicioGeneral() {
   }
     login.validaciones();
     login.listeners();
+    
+    os = getMobileOperatingSystem();
+
+    if (os.match("celular")) {
+        $('#divModal12').removeClass('col-md-12');
+       
+    }
 }
 //------------------------------------------------------------------------------
 /**

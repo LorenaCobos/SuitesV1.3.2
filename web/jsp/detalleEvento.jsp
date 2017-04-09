@@ -15,12 +15,13 @@
 <section>
     <span class="label-titulo-seccion" ><s:message code="key_placeholder_eventos"/></span>
     <span style="float: right">
-        <a href="#" name="buttonRegresar" onclick="bloquear();" id="buttonRegresar">
+        <a href="#" name="buttonRegresar1" onclick="bloquear();" id="buttonRegresar1">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<s:message code="key_button_regresar"/>
         </a>
     </span>
     
 </section>
+
 <input type="hidden" id="hdneventoId" value="${evento.eventoId}">
 <input type="hidden" id="hdnrecinto" value="${evento.recinto}">
 <input type="hidden" id="hdnfechaPresentacion" value="${evento.fechaPresentacion}">
@@ -31,6 +32,12 @@
 <input type="hidden" id="hdnnumeroBoletos" value="${evento.numeroBoletos}">
 <input type="hidden" id="hdnnumeroEstacionamientos" value="${evento.numeroEstacionamientos}">
 <input type="hidden" id="hdnnumeroInvitaciones" value="${evento.numeroInvitaciones}">
+<input type="hidden" id="hdnrecintoBusquedaId" value="${evento.recintoBusquedaId}">
+<input type="hidden" id="hdnsuiteBusquedaId" value="${evento.suiteBusquedaId}">
+<input type="hidden" id="hdneventoBusqueda" value="${evento.eventoBusqueda}">
+<input type="hidden" id="hdnfechaIniBusqueda" value="${evento.fechaIniBusqueda}">
+<input type="hidden" id="hdnfechaFinBusqueda" value="${evento.fechaFinBusqueda}">
+
     <div id="eventosWidget">    
         <div class="panel row panel-horizontal panel-info" id="evento11563">
             <div class="col-md-5 col-sm-6 col-xs-6" style="text-align: center">
@@ -44,14 +51,16 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div style="padding-top: 10px">
                             <div><label class="label-evento-panel">${evento.evento}</label></div>
-                               <div><label>${evento.recinto}</label></div>		
-                            <div style="font-weight: 700; color: #000">		
-                                <s:message code="key_placeholder_suite"/>:<label>${evento.suite}</label> 		
+                            <div><label>${evento.recinto}</label></div>
+                            <div style="font-weight: 700; color: #000">
+                                <s:message code="key_placeholder_suite"/>:<label>${evento.suite}</label> 
                             </div>   
                             <div>  
                                 <i class="fa fa-calendar-o"></i>
                                 <label>${evento.fechaPresentacion}</label>
                             </div>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -263,7 +272,7 @@
                     </div>
                 </div>
                 <div class="row" style="padding-top: 15px">
-                    <div class="CSSTableResults table-responsive">
+                    <div class="CSSTableResults table-responsive table-fixed">
                         <table id="invitacionesTable" class="table-condensed table-responsive table-hover">
                             <thead>
                                 <tr >
@@ -291,7 +300,7 @@
                                     
             <div class="tab-pane" id="tabResumenImp">   
                 <div style="padding-top: 15px">
-                    <div class="CSSTableResults table-responsive">
+                    <div class="CSSTableResults table-responsive table-fixed">
                         <table class="table-condensed table-responsive table-hover">
                             <thead>
                                 <tr >
@@ -337,7 +346,7 @@
                                       onclick="detalleEvento.help(1)"></span>
                             </div>
                             <div class="form-group col-md-5 col-sm-5 col-xs-12 text-center">
-                                <button type="button" name="buttonVenderAceptar" id="buttonAceptar" value="<s:message code="key_generico_aceptar"/>" class="button btn-default "><s:message code="key_generico_aceptar"/></button>
+                                <button type="button" name="buttonVenderAceptar" id="buttonVenderAceptar" value="<s:message code="key_generico_aceptar"/>" class="button btn-default "><s:message code="key_generico_aceptar"/></button>
                                     &nbsp;
                                 <button type="button" name="buttonVenderCancela" id="buttonVenderCancela" class="button btn-default" value="<s:message code="key_generico_cancelar"/>"><s:message code="key_generico_cancelar"/></button>
                             </div>
@@ -346,130 +355,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>        
                             
-                                    
-                                    
-<%--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-   
-    <div class="panel panel-default">
-        <div class="panel-heading text-center" role="tab" id="headingOne">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" aria-expanded="true" aria-controls="collapseOne" >
-                    <label for="textfield2" class="control-label" ><s:message code="key_placeholder_resumen_mov"/></label>
-                </a>
-            </h4>
-        </div>
-        <div id="collapsethree" class="panel-collapse collapse"  role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center" role="tab" id="headingOne1">
-                            <h4 class="panel-title">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" onclick="v">
-                                    <label for="textfield2" class="control-label" ><s:message code="key_detalle_invitaciones" /></label>
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-2 text-center" style="padding-left:0px;padding-right:0px;width:100px;">
-                                        <label for="textfield2" class="control-label" >Filtrar por:</label>
-                                    </div>
-                                    <div class="col-sm-3" style="padding-left:0px;padding-right:0px;">
-                                        <select name="selectEstatus" id="selectEstatus" class="form-control" onchange="detalleEvento.mostrarInvitaciones()">
-                                            <option value=""  >Todas</option>
-                                            <option value="EN_PROCESO"  >Enviadas</option>
-                                            <option value="ACEPTADA"  >Aceptadas</option>
-                                            <option value="DECLINADA"  >Declinadas</option>
-                                            <option value="FINALIZADA"  >Finalizadas</option>
-                                            <option value="CANCELADA"  >Canceladas</option>
-                                        </select>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div class="CSSTableResults">
-                                <table id="invitacionesTable" class="table-condensed table-responsive table-hover">
-                                    <thead>
-                                        <tr >
-                                            <th>
-                                                <s:message code="key_usuario_grid_nombre" />
-                                            </th>
-                                            <th>
-                                                <s:message code="key_usuario_grid_correo" />
-                                            </th>
-                                            <th>
-                                                <s:message code="key_usuario_grid_estatus" />
-                                            </th>
-                                            <th>
-                                                <s:message code="key_usuario_grid_accion" />
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="contTablaInvitacion">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center" role="tab" id="headingTwo1">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1" onclick="detalleEvento.obtenerResumen();">
-                                <label for="textfield2" class="control-label" ><s:message code="key_detalle_Impresiones" /></label>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo1">
-                        <div class="panel-body">
-                            <div class="CSSTableResults">
-                                <table class="table-condensed table-responsive table-hover">
-                                    <thead>
-                                        <tr >
-                                            <th>
-                                                <s:message code="key_placeholder_usuario" />
-                                            </th>
-                                            <th>
-
-                                            </th>
-                                            <th>
-                                                <s:message code="key_usuario_grid_estatus" />
-                                            </th>
-                                            <th>
-                                                <s:message code="key_usuario_grid_accion" />
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="contTablaImpresion">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-<!-- Venta de Boletos-->
-    <div class="panel panel-default">
-        <div class="panel-heading text-center" role="tab" id="headingFour">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                    <label for="textfield2" class="control-label" ><s:message code="key_placeholder_ventaBoletos"/></label>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-            <div class="panel-body">
-
-                
-            </div>
-        </div>
-    </div>
-</div>--%>
-    
+    <div id="contForm">
+        <form:form id="formulario" name="formulario"  method="post" action="">
+        </form:form>
+    </div>                
