@@ -19,7 +19,7 @@ var invitacion = {
     aceptar: function () {
         dwrEvento.actualizarInvitacion($("#usuarioId").val(), $("#transferenciaId").val(), 1, false, {
             callback: function (data) {
-                alertaGuardarGenerico();
+                alertaConfirmacionExito(informacion, "La invitación se ha aceptado correctamente");
                 $("#buttonAceptar").hide();
                 $("#buttonDeclinar").hide();
                 window.close();
@@ -35,7 +35,8 @@ var invitacion = {
     }, declinar: function () {
         dwrEvento.actualizarInvitacion($("#usuarioId").val(), $("#transferenciaId").val(), 0, false, {
             callback: function (data) {
-                alertaGuardarGenerico();
+                alertaConfirmacionExito(informacion, "La invitación se ha declinado correctamente");
+                //alertaGuardarGenerico();
                 $("#buttonAceptar").hide();
                 $("#buttonDeclinar").hide();
                 window.close();

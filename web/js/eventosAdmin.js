@@ -283,7 +283,7 @@ var eventos = {
          var nombre="Evento_"+evento+"_"+fecha;
         nombre =nombre.replace(" ","_").replace("/","_").replace("/","_").replace(":","_");
         //alert(evento+"==="+nombre);
-        dwrEvento.saveArchivo( 0, /*nombre+ext*/"Evento_"+evento+ext,  evento,
+        dwrEvento.saveArchivo( 0, /*nombre+ext*/"Evento_"+presentacion+ext,  presentacion,
                     {
                         callback: function(data) {
                             switch (data) {
@@ -369,7 +369,7 @@ function uploadFiles(event)
 
     var oMyForm = new FormData();
     oMyForm.append("file", files[0]);
-    oMyForm.append("id", evento);
+    oMyForm.append("id", presentacion);
 
     $.ajax({
         url: baseNormal + '/upload.do',

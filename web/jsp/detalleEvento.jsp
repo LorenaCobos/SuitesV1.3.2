@@ -199,7 +199,7 @@
 
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12 text-xs-left">
-                                <label for="txtBoletos2"  ><s:message code="key_placeholder_boletos"/>&nbsp;</label>:
+                                <label for="txtBoletos2"  ><s:message code="key_placeholder_boletos_"/>&nbsp;</label>:
                             </div>
                             <div class="col-md-2 col-sm-10 col-xs-10 ">
                                 <input type="number"  min="0" max="24" maxlength="2" placeholder="# Boletos"   

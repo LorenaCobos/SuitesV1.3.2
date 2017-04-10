@@ -210,8 +210,8 @@ public class EventosDAO extends BaseDAO {
         try {
             objlStmnt = conn.prepareCall(QUERY);
             objlStmnt.setInt(1, usuarioId);//1493
-            objlStmnt.setInt(2, eventoId);//11563
-            objlStmnt.setInt(3, presentacionId);//17260
+            objlStmnt.setInt(2, eventoId);//11563 //12672
+            objlStmnt.setInt(3, presentacionId);//17260//19104
             objlStmnt.setInt(4, seccionId);//8325
             objlStmnt.setInt(5, lenguajeId);//1
             objlStmnt.registerOutParameter(6, OracleTypes.CURSOR);
@@ -287,7 +287,7 @@ public class EventosDAO extends BaseDAO {
             objlStmnt.setInt(1, archivoId);//0
             objlStmnt.setInt(2, repossitorio);//56
             objlStmnt.setString(3, nombre);//Evento_11563
-            objlStmnt.setInt(4, entidadId);//11563
+            objlStmnt.setInt(4, entidadId);//11563 //13059
             objlStmnt.setInt(5, usuarioId);//1493
             objlStmnt.registerOutParameter(6, OracleTypes.INTEGER);
             objlStmnt.execute();

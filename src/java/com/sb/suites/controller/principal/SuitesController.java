@@ -399,7 +399,7 @@ public class SuitesController extends BaseController implements Serializable {
         System.out.println(mpf.getOriginalFilename() + " uploaded!");
         
         try {
-            //just temporary save file info into ufile
+            //just temporary save file info into ufileEVENTO_13059 EVENTO_20891
             ufile.length = mpf.getBytes().length;
             ufile.bytes = mpf.getBytes();
             ufile.type = mpf.getContentType();

@@ -40,9 +40,9 @@ public class BaseDAO {
             
 	    //desarrollo
             //DriverManager.registerDriver(new OracleDriver());
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@" + codigos.getString("key_sources_url_ventas") + ":" + codigos.getString("key_sources_port_ventas") + ":" + codigos.getString("key_sources_instacia_ventas") + "", codigos.getString("key_sources_user_ventas"), codigos.getString("key_sources_password_ventas"));
+            //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@" + codigos.getString("key_sources_url_ventas") + ":" + codigos.getString("key_sources_port_ventas") + ":" + codigos.getString("key_sources_instacia_ventas") + "", codigos.getString("key_sources_user_ventas"), codigos.getString("key_sources_password_ventas"));
 //	    //Produccion
-            //Connection con = ServiceLocator.getInstance().getDataSource(codigos.getString("ds.jndiName")).getConnection();
+            Connection con = ServiceLocator.getInstance().getDataSource(codigos.getString("ds.jndiName")).getConnection();
             //Produccion Nuevo
 //            Connection con = ServiceLocatorWL.getInstance().getDataSource(codigos.getString("ds.jndiName")).getConnection();
 	    //Produccion local
@@ -59,7 +59,7 @@ public class BaseDAO {
     protected Connection getConnectionAdmin() throws ExceptionCmm {
         try {
 //	    Desarrollo
-            //DriverManager.registerDriver(new OracleDriver());
+           //DriverManager.registerDriver(new OracleDriver());
            //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@" + codigos.getString("key_sources_url") + ":" + codigos.getString("key_sources_port") + ":" + codigos.getString("key_sources_instacia") + "", codigos.getString("key_sources_user"), codigos.getString("key_sources_password"));
 //	    Produccion
             Connection con = ServiceLocator.getInstance().getDataSource(codigos.getString("ds.admin.jndiName")).getConnection();
