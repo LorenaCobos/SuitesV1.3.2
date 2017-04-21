@@ -32,7 +32,8 @@ var usuarios = {
              bloquear();
             dwrUsuario.getSuitesUsuario($("#selectRecinto").val(),0,usuarios.getSuitesUsuarioCall);
         });
-        
+        event.preventDefault();
+        usuarios.obtenerUsuarios();
     }, getSuitesUsuarioCall : function(data){
         desbloquear()
         if(data!==null||data!==''){
@@ -113,7 +114,13 @@ var usuarios = {
     },
      irDetalleForm: function(usuario) {
          bloquear();
-         
+        var recintoBusquedaId = $("#selectRecinto").val();
+        var suitesBusquedaId = $("#selectSuite").val();
+        var nombreBusquedaId = $("#textfieldNombre").val();
+        var correoBusquedaId = $("#textfieldCorreo").val();
+        var estatusBusquedaId = $("#selectEstatus").val();
+        var tipoBusquedaId = $("#selectTipo").val();
+        
         var form = $("<form/>", {
             action: baseNormal+  "/s/detalleUsuario.do",
             id: 'formInicio',
@@ -127,7 +134,58 @@ var usuarios = {
                             name: 'usuario',
                             value: $.trim(Aes.Ctr.encrypt(usuario.toString(), "", 1))
                         }
-                )
+                ),
+                $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'recintoBusquedaId',
+                               value: $.trim(recintoBusquedaId),
+                               id: 'recintoBusquedaId'
+                           }
+                   ),
+
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'suitesBusquedaId',
+                               value: $.trim(suitesBusquedaId),
+                               id: 'suitesBusquedaId'
+                           }
+                   ),
+                    $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'nombreBusquedaId',
+                               value: $.trim(nombreBusquedaId),
+                               id: 'nombreBusquedaId'
+                           }
+                   ),
+
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'correoBusquedaId',
+                               value: $.trim(correoBusquedaId),
+                               id: 'correoBusquedaId'
+                           }
+                   ),
+                      $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'estatusBusquedaId',
+                               value: $.trim(estatusBusquedaId),
+                               id: 'estatusBusquedaId'
+                           }
+                   ),
+
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'tipoBusquedaId',
+                               value: $.trim(tipoBusquedaId),
+                               id: 'tipoBusquedaId'
+                           }
+                   )
                 );
         $("#contForm").html("");
         $("#contForm").append(form);

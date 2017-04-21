@@ -75,7 +75,7 @@
                         <div class="col-md-3 col-sm-9 col-xs-12">
                             <select name="select" id="selectRecinto" class="form-control">
                                 <c:forEach var="recinto" items="${recintos}">
-                                    <option value="${recinto.id}">${recinto.nombre}</option>
+                                    <option value="${recinto.id}" ${recinto.id == suites_.recintoBuscarId ? 'selected="selected"' : ''}>${recinto.nombre}</option>
                                 </c:forEach>
 
                             </select>
@@ -85,7 +85,7 @@
                             <label for="textfield2" class="control-label" ><s:message code="key_placeholder_suitehabiente"/>:</label>
                         </div>
                         <div class="col-md-3 col-sm-9 col-xs-12">
-                            <input type="text" name="textfield" id="textfieldDueno" class="form-control">
+                            <input type="text" name="textfield" id="textfieldDueno" class="form-control" value="${suites_.suitehambienteBuscarId}">
                         </div>
                        
 
@@ -96,7 +96,7 @@
                             <select name="select" id="selectEstatus" class="form-control">
                                 <option value="0"><s:message code="key_generico_todos"/></option>
                                 <c:forEach var="estatus" items="${estatus}">
-                                    <option value="${estatus.clave}">${estatus.nombre}</option>
+                                    <option value="${estatus.clave}"  ${estatus.clave== suites_.estatusBuscarId ? 'selected="selected"' : ''}>${estatus.nombre}</option>
                                 </c:forEach>
 
                             </select>
@@ -113,7 +113,7 @@
                             <label for="textfield2" class="control-label" ><s:message code="key_placeholder_suite"/>:</label>
                         </div>
                         <div class="col-md-3 col-sm-9 col-xs-12">
-                            <input type="text" name="textfieldSuite" id="textfieldSuite" class="form-control">
+                            <input type="text" name="textfieldSuite" id="textfieldSuite" class="form-control" value="${suites_.suiteBuscarId}">
                         </div>
                         <div class="col-md-1 col-sm-3 col-xs-12 text-left">
                             <label for="textfield2"  class="control-label"><s:message code="key_placeholder_fecha"/>:</label>
@@ -124,12 +124,12 @@
                             <div class="row">
 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_inicio"/>" name="textfield" id="txtFechaInicio" class="form-control" style="background-color:white;">
+                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_inicio"/>" value="${suites_.fechainiBuscarId}" name="textfield" id="txtFechaInicio" class="form-control" style="background-color:white;">
 
                                 </div>
 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_fin"/>" name="textfield" id="txtFechaFin" class="form-control" style="background-color:white;">
+                                    <input type="text" readonly="true" placeholder="<s:message code="key_placeholder_fin"/>" value="${suites_.fechafinBuscarId}" name="textfield" id="txtFechaFin" class="form-control" style="background-color:white;">
 
                                 </div>
 
@@ -195,7 +195,25 @@
                             
                         </form:form>
                     </div>  
+<script type="text/javascript" src="<%= request.getContextPath()%>/js/bootstrap-toolkit.min.js"></script>
+<script>
+    (function($, document, window, viewport) {
+        var colapsa = function() {
 
+            os = getMobileOperatingSystem();
+
+            if (os.match("celular"))
+                $('#collapse1').removeClass('in');
+            else
+                $('#collapse1').collapse('show');
+        };
+
+        $(document).ready(function() {
+            colapsa();
+        });
+
+    }(jQuery, document, window, ResponsiveBootstrapToolkit));
+</script>
 
 
 

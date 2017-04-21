@@ -1,4 +1,5 @@
 function inicioGeneral() {
+  
     detalleEvento.cargaInicial();
 }
 /*function getQueryVariable(variable) {
@@ -19,15 +20,36 @@ function validar(e) {
   tecla = (document.all) ? e.keyCode : e.which;
   if (tecla==13) {
     boletos=$("#hdnnumeroBoletos").val();
-    boletoxt=$("#txtBoletos").val();
-    if(boletos==0)
+    boletosnormales=$("#txtBoletos").val();
+     if(boletos>0)
+     {
+       if(boletosnormales==0)
+       {alertaError(error, "Ingresar un numero mayor a 0");$("#txtBoletos").val("");}
+     }
+    if(boletos==0 || boletosnormales>boletos)
      { 
        alertaError(error, "No cuenta con boletos suficientes");
        $("#txtBoletos").val("");
      }
     }
-    if(boletoxt==0)
-     {dato.innerText = "";}
+}
+    
+  function validar_estacionamiento(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==13) {
+        boletosestacionamiento=$("#hdnnumeroEstacionamientos").val();
+        boletosest=$("#txtBoletosEsta").val();
+         if(boletosestacionamiento>0)
+         {
+         if(boletosest==0)
+            {$("#txtBoletosEsta").val("");alertaError(error, "Ingresar un numero mayor a 0");}
+         }
+        if(boletosestacionamiento==0 || boletosest>boletosestacionamiento)
+        { 
+           alertaError(error, "No cuenta con boletos suficientes");
+           $("#txtBoletosEsta").val("");
+        }
+      }
     }
 
 var detalleEvento = {
@@ -50,8 +72,13 @@ var detalleEvento = {
         });
         $("#buttonImprimir").click(function(event) {
             boletos=$("#hdnnumeroBoletos").val();
-            boletoxt=$("#txtBoletos").val();
-             if(boletos==0)
+            boletosnormales=$("#txtBoletos").val();
+            if(boletos>0)
+            {
+              if(boletosnormales==0)
+              {alertaError(error, "Ingresar un numero mayor a 0");$("#txtBoletos").val("");}
+            }
+            if(boletos==0 || boletosnormales>boletos)
              { 
                 alertaError(error, "No cuenta con boletos suficientes");
                 $("#txtBoletos").val("");
@@ -66,10 +93,24 @@ var detalleEvento = {
             //detalleEvento.imprimirPDF();
         });
         $("#buttonImprimirEsta").click(function(event) {
-            event.preventDefault();
-
-            if ($("#formSuiteEstacionamiento").valid()) {
-                alertaConfirmacion(confirmacion, msgInvitacionEstaImprimir, detalleEvento.imprimirEstacionamientoPDF);
+            boletosestacionamiento=$("#hdnnumeroEstacionamientos").val();
+             boletosest=$("#txtBoletosEsta").val();
+           if(boletosestacionamiento>0)
+            {
+            if(boletosest==0)
+               {$("#txtBoletosEsta").val("");alertaError(error, "Ingresar un numero mayor a 0");}
+            }
+            if(boletosestacionamiento==0 || boletosest>boletosestacionamiento)
+             { 
+                alertaError(error, "No cuenta con boletos suficientes");
+                $("#txtBoletosEsta").val("");
+             }
+             else
+             {
+                event.preventDefault();
+                if ($("#formSuiteEstacionamiento").valid()) {
+                    alertaConfirmacion(confirmacion, msgInvitacionEstaImprimir, detalleEvento.imprimirEstacionamientoPDF);
+                }
             }
             //detalleEvento.imprimirPDF();
         });

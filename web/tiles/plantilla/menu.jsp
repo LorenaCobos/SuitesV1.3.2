@@ -78,7 +78,7 @@
                       </ul>
                   </li>     
                </c:forEach>
-                  <li class="treeview">
+                  <li class="treeview" style="display:none">
                       <a href="#">
                           <i class=" fa fa-circle-o text-gray"></i> 
                           <span>Ayuda <b class="caret"></b></span>

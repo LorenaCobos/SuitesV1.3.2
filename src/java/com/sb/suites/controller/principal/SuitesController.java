@@ -111,8 +111,8 @@ public class SuitesController extends BaseController implements Serializable {
         return modeloVista;
     }
 
-    @RequestMapping(value = "/s/suites", method = RequestMethod.GET)
-    public ModelAndView suites(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
+    @RequestMapping(value = "/s/suites", method ={ RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView suites(@ModelAttribute("commandl") SuiteEntidad suites_,HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad"); 
         if(session.getAttribute("usuarioEntidad") == null)
@@ -127,6 +127,7 @@ public class SuitesController extends BaseController implements Serializable {
             modeloVista.addObject("menu", getMenuModulosUsuario(req, session));
             modeloVista.addObject("user", getUser(req, session));
             modeloVista.addObject("contexto", contexto);
+            modeloVista.addObject("suites_", suites_);
             modeloVista.addObject("estatus", catalogo.getEstatus(req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("recintos", catalogo.getRecintos(usuario.getUsuarioId()));
             modeloVista.addObject("funcionalidades", session.getAttribute("funcionalidades") == null ? new ArrayList<FuncionalidadOperacion>() : (ArrayList<FuncionalidadOperacion>) session.getAttribute("funcionalidades"));
@@ -251,8 +252,8 @@ public class SuitesController extends BaseController implements Serializable {
     }
     
     
-    @RequestMapping(value = "/s/usuarios", method = RequestMethod.GET)
-    public ModelAndView usuarios(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
+    @RequestMapping(value = "/s/usuarios", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView usuarios(@ModelAttribute("command") UsuariosEntidad usuario_,HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
         session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         if(session.getAttribute("usuarioEntidad") == null)
@@ -264,6 +265,7 @@ public class SuitesController extends BaseController implements Serializable {
             ModelAndView modeloVista = new ModelAndView("usuarios");
             String contexto = obtenerContexto("http", req.getServerName(), String.valueOf(req.getServerPort()));
             modeloVista.addObject("contexto", contexto);
+            modeloVista.addObject("usuarios", usuario_);
             modeloVista.addObject("menu", getMenuModulosUsuario(req, session));
             modeloVista.addObject("user", getUser(req, session));
             modeloVista.addObject("estatus", catalogo.getEstatus(req.getLocale().getLanguage().equals("es") ? 1 : 2));
@@ -286,8 +288,8 @@ public class SuitesController extends BaseController implements Serializable {
         return modeloVista;
     }
 
-    @RequestMapping(value = "/s/detalleSuite", method = RequestMethod.POST)
-    public ModelAndView detalleSuite(@ModelAttribute("command") EventoSeleccionadoEntidad eventoSeleccionado, HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
+    @RequestMapping(value = "/s/detalleSuite", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView detalleSuite(@ModelAttribute("commandl") SuiteEntidad suites_,@ModelAttribute("command") EventoSeleccionadoEntidad eventoSeleccionado, HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
        session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         ModelAndView modeloVista = new ModelAndView("detalleSuite");
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
@@ -304,6 +306,7 @@ public class SuitesController extends BaseController implements Serializable {
             modeloVista.addObject("cantidadEvento", catalogo.getNumeroEventos(req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("tipoEvento", catalogo.getTiposEvento(req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("suite", suiteInfo);
+            modeloVista.addObject("suites_", suites_);
             modeloVista.addObject("suites", catalogo.getSuitesDisponibles(usuario.getUsuarioId(), eventoSeleccionado.getRecintoId(), suiteInfo.getSeccionUbicacionId()));
             String contexto = obtenerContexto("http", req.getServerName(), String.valueOf(req.getServerPort()));
             modeloVista.addObject("contexto", contexto);
@@ -323,7 +326,7 @@ public class SuitesController extends BaseController implements Serializable {
     }
 
     @RequestMapping(value = "/s/detalleUsuario", method = RequestMethod.POST)
-    public ModelAndView detalleUsuarios(HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
+    public ModelAndView detalleUsuarios(@ModelAttribute("command") UsuariosEntidad usuario_,HttpSession session, HttpServletResponse response, HttpServletRequest req) throws ExceptionCmm, Exception {
         ModelAndView modeloVista = new ModelAndView("detalleUsuarios");
         session.setMaxInactiveInterval(Integer.parseInt(environment.getProperty("sessionTimeOut", "1800")));
         UsuariosEntidad usuario = session.getAttribute("usuarioEntidad") == null ? new UsuariosEntidad() : (UsuariosEntidad) session.getAttribute("usuarioEntidad");
@@ -335,6 +338,7 @@ public class SuitesController extends BaseController implements Serializable {
         {
             modeloVista.addObject("menu", getMenuModulosUsuario(req, session));
             modeloVista.addObject("user", getUser(req, session));
+             modeloVista.addObject("usuarios", usuario_);
             modeloVista.addObject("estatus", catalogo.getEstatus(req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("tipos", catalogo.getTipos(usuario.getUsuarioId(), req.getLocale().getLanguage().equals("es") ? 1 : 2));
             modeloVista.addObject("usuario", usuarioBss.getUsuario(Integer.parseInt(AesDwr.decrypt(req.getParameter("usuario"))), req.getLocale().getLanguage().equals("es") ? "1" : "2"));

@@ -24,7 +24,7 @@ public class EventosDAO extends BaseDAO {
     public ArrayList<SuiteEntidad> getSuitesPresentaciones(int recintoId, String evento, String estatus, String fechaInicio, String fechaFin, String secciones) throws ExceptionCmm {
         ArrayList<SuiteEntidad> listaResultados = new ArrayList<SuiteEntidad>();
         ResultSet rs = null;
-        final String QUERY = "{call " + SUITES_PKG + ".GET_EVENTOS_PRC("
+        final String QUERY = "{call " + SUITES_PKG + ".GET_EVENTOS_PRCV2("
                 + "?," + // i_RecintoId
                 "?," + // i_evento
                 "?," + // i_Estatus

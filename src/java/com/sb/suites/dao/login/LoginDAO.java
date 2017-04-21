@@ -34,7 +34,7 @@ public class LoginDAO extends BaseDAO {
     public UsuariosEntidad validaUsuario(String usuario, String pwd, int lenguajeId) throws ExceptionCmm {
         ResultSet rs = null;
         UsuariosEntidad usr = new UsuariosEntidad();
-        final String QUERY = "{call " + XXSB_SUITES_PKG + ".LOGIN_USUARIO_PRC(?," +// i_Usuario 
+        final String QUERY = "{call " + XXSB_SUITES_PKG + ".LOGIN_USUARIO_PRCV2(?," +// i_Usuario 
                 "?," +// i_contrasena
                 "?," +// i_LengujeId
                 "?," +// o_Integer
@@ -51,7 +51,11 @@ public class LoginDAO extends BaseDAO {
             objlStmnt.registerOutParameter(5, OracleTypes.CURSOR);
             objlStmnt.execute();
             usr.setUsuarioId(objlStmnt.getInt(4));
-            if (usr.getUsuarioId() != 0) {
+            if(usr.getUsuarioId() == 1)
+            {
+                 usr.setUsuarioId(-3);
+            }
+            if (usr.getUsuarioId() != 0 && usr.getUsuarioId() != -3) {
                 rs = (ResultSet) objlStmnt.getObject(5);
                 while (rs.next()) {
                     usr.setUsuarioId(rs.getInt("USUARIO_ID"));
@@ -64,7 +68,8 @@ public class LoginDAO extends BaseDAO {
                     usr.setRecintos(rs.getString("RECINTO"));
                     usr.setRecintoUbicacionId(rs.getInt("RECINTO_ID"));
                 }
-            } else {
+            }
+            if (usr.getUsuarioId() == 0){
                 usr.setUsuarioId(-2);
             }
         } catch (SQLException e) {

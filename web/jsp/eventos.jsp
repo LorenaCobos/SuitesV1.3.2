@@ -21,7 +21,7 @@
 
 <form id="formSuite" >
 
-
+<input type="hidden" id="hdnsuiteBusquedaId" value="${evento.suiteBusquedaId}">
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
 

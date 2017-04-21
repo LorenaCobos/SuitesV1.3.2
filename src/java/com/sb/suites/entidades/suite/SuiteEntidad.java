@@ -68,6 +68,14 @@ public class SuiteEntidad extends BaseEntidad{
     private String ruta="";
     private String nombreSuite="";
     
+    
+    //BUSQUEDAS
+    private int recintoBuscarId=0;
+    private String suitehambienteBuscarId="";
+    private String estatusBuscarId="";
+    private String suiteBuscarId="";
+    private String fechainiBuscarId="";
+    private String fechafinBuscarId="";
 
     /**
      * @return the seccionUbicacionId
@@ -796,6 +804,90 @@ public class SuiteEntidad extends BaseEntidad{
      */
     public void setNombreSuite(String nombreSuite) {
         this.nombreSuite = nombreSuite;
+    }
+
+    /**
+     * @return the recintoBuscarId
+     */
+    public int getRecintoBuscarId() {
+        return recintoBuscarId;
+    }
+
+    /**
+     * @param recintoBuscarId the recintoBuscarId to set
+     */
+    public void setRecintoBuscarId(int recintoBuscarId) {
+        this.recintoBuscarId = recintoBuscarId;
+    }
+
+    /**
+     * @return the suitehambienteBuscarId
+     */
+    public String getSuitehambienteBuscarId() {
+        return suitehambienteBuscarId;
+    }
+
+    /**
+     * @param suitehambienteBuscarId the suitehambienteBuscarId to set
+     */
+    public void setSuitehambienteBuscarId(String suitehambienteBuscarId) {
+        this.suitehambienteBuscarId = suitehambienteBuscarId;
+    }
+
+    /**
+     * @return the estatusBuscarId
+     */
+    public String getEstatusBuscarId() {
+        return estatusBuscarId;
+    }
+
+    /**
+     * @param estatusBuscarId the estatusBuscarId to set
+     */
+    public void setEstatusBuscarId(String estatusBuscarId) {
+        this.estatusBuscarId = estatusBuscarId;
+    }
+
+    /**
+     * @return the suiteBuscarId
+     */
+    public String getSuiteBuscarId() {
+        return suiteBuscarId;
+    }
+
+    /**
+     * @param suiteBuscarId the suiteBuscarId to set
+     */
+    public void setSuiteBuscarId(String suiteBuscarId) {
+        this.suiteBuscarId = suiteBuscarId;
+    }
+
+    /**
+     * @return the fechainiBuscarId
+     */
+    public String getFechainiBuscarId() {
+        return fechainiBuscarId;
+    }
+
+    /**
+     * @param fechainiBuscarId the fechainiBuscarId to set
+     */
+    public void setFechainiBuscarId(String fechainiBuscarId) {
+        this.fechainiBuscarId = fechainiBuscarId;
+    }
+
+    /**
+     * @return the fechafinBuscarId
+     */
+    public String getFechafinBuscarId() {
+        return fechafinBuscarId;
+    }
+
+    /**
+     * @param fechafinBuscarId the fechafinBuscarId to set
+     */
+    public void setFechafinBuscarId(String fechafinBuscarId) {
+        this.fechafinBuscarId = fechafinBuscarId;
     }
 
 

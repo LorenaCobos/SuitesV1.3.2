@@ -9,7 +9,7 @@ function inicioGeneral() {
    window.onhashchange=function(){window.location.hash="no-back-button";};
   if(history.forward(1))
   {
-     history.replace('/Suites/login.do'); 
+     history.replace('/Suitesv2/login.do'); 
     location.replace(history.forward(1));
   }
     login.validaciones();
@@ -143,7 +143,7 @@ var login = {
                     callback: function(data) {
                         switch (data) {
                            case 0:
-                              location.href = "/Suites/logout.do";   
+                              location.href = "/Suitesv2/logout.do";   
                             break;
                             break;
                             case null:
@@ -171,6 +171,9 @@ var login = {
                     {
                         callback: function(data) {
                             switch (data) {
+                                case -3:
+                                    mostrarNotificaErrorAutenticacion(usuarioSinPermisos);
+                                    break;
                                 case null:
                                     mostrarNotificaErrorAutenticacion(usuarioInexistente);
                                     break;
@@ -178,7 +181,7 @@ var login = {
                                     mostrarNotificaErrorAutenticacion(errorInternoRecuperar);
                                     break;
                                 case -2:
-                                    mostrarNotificaErrorAutenticacion(usuarioSinPermisos);
+                                    mostrarNotificaErrorAutenticacion(usuarioincorrecto);
                                     break;
                                 default:
                                     bloquear();

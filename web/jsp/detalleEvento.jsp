@@ -120,7 +120,7 @@
             <li><a id="ia2"   href="#tabInvitaEvento" data-toggle="tab">Invitar a Evento</a></li>
             <li><a id="ia3"   href="#tabResumenInv" data-toggle="tab" onclick="detalleEvento.obtenerResumen();">Resumen de Invitaciones</a></li>
             <li><a id="ia4"   href="#tabResumenImp" data-toggle="tab" onclick="detalleEvento.obtenerResumen();">Resumen de Impresiones</a></li>
-            <li><a id="ia5"    href="#tabVentaBoletos" data-toggle="tab">Vende tus boletos</a></li>
+            <li><a id="ia5"  style="display:none"   href="#tabVentaBoletos" data-toggle="tab">Vende tus boletos</a></li>
         </ul>
         <div class="tab-content">
             <div class="active tab-pane" id="tabImpBoletos">
@@ -166,7 +166,7 @@
                             </div>
                             <div class="col-md-2 col-sm-3 col-xs-7 ">
                                 <input type="number"  min="0" max="24" maxlength="2" placeholder="# Boletos"   
-                                       pattern="[0-9]" name="txtBoletosEsta" id="txtBoletosEsta" 
+                                       pattern="[0-9]" name="txtBoletosEsta"  onkeypress="validar_estacionamiento(event)" id="txtBoletosEsta" 
                                        class="numeric form-control text-center">
                             </div> 
                             <div class="col-md-1 col-sm-1 col-xs-2 ">
@@ -326,7 +326,7 @@
                 </div>
             </div>
                                     
-            <div class="tab-pane" id="tabVentaBoletos">
+            <div class="tab-pane" id="tabVentaBoletos" style="display:none">
                 <div class="box box-primary">
             <!-- form start -->
                     <form role="form" id="formSuiteVenta" >

@@ -51,7 +51,13 @@ public class UsuariosEntidad extends BaseEntidad implements Serializable{
     private String tipo = "";
     private int tipoId = 0;
     
-    
+    //busqueda
+    private int recintoBusquedaId=0;
+    private int suitesBusquedaId=0;
+    private String nombreBusquedaId="";
+    private String correoBusquedaId="";
+    private String estatusBusquedaId="";
+    private String tipoBusquedaId="";
     
     /**
      * @return the usuarioId
@@ -613,6 +619,90 @@ public class UsuariosEntidad extends BaseEntidad implements Serializable{
      */
     public void setTipoId(int tipoId) {
         this.tipoId = tipoId;
+    }
+
+    /**
+     * @return the recintoBusquedaId
+     */
+    public int getRecintoBusquedaId() {
+        return recintoBusquedaId;
+    }
+
+    /**
+     * @param recintoBusquedaId the recintoBusquedaId to set
+     */
+    public void setRecintoBusquedaId(int recintoBusquedaId) {
+        this.recintoBusquedaId = recintoBusquedaId;
+    }
+
+    /**
+     * @return the suitesBusquedaId
+     */
+    public int getSuitesBusquedaId() {
+        return suitesBusquedaId;
+    }
+
+    /**
+     * @param suitesBusquedaId the suitesBusquedaId to set
+     */
+    public void setSuitesBusquedaId(int suitesBusquedaId) {
+        this.suitesBusquedaId = suitesBusquedaId;
+    }
+
+    /**
+     * @return the nombreBusquedaId
+     */
+    public String getNombreBusquedaId() {
+        return nombreBusquedaId;
+    }
+
+    /**
+     * @param nombreBusquedaId the nombreBusquedaId to set
+     */
+    public void setNombreBusquedaId(String nombreBusquedaId) {
+        this.nombreBusquedaId = nombreBusquedaId;
+    }
+
+    /**
+     * @return the correoBusquedaId
+     */
+    public String getCorreoBusquedaId() {
+        return correoBusquedaId;
+    }
+
+    /**
+     * @param correoBusquedaId the correoBusquedaId to set
+     */
+    public void setCorreoBusquedaId(String correoBusquedaId) {
+        this.correoBusquedaId = correoBusquedaId;
+    }
+
+    /**
+     * @return the estatusBusquedaId
+     */
+    public String getEstatusBusquedaId() {
+        return estatusBusquedaId;
+    }
+
+    /**
+     * @param estatusBusquedaId the estatusBusquedaId to set
+     */
+    public void setEstatusBusquedaId(String estatusBusquedaId) {
+        this.estatusBusquedaId = estatusBusquedaId;
+    }
+
+    /**
+     * @return the tipoBusquedaId
+     */
+    public String getTipoBusquedaId() {
+        return tipoBusquedaId;
+    }
+
+    /**
+     * @param tipoBusquedaId the tipoBusquedaId to set
+     */
+    public void setTipoBusquedaId(String tipoBusquedaId) {
+        this.tipoBusquedaId = tipoBusquedaId;
     }
     
 }

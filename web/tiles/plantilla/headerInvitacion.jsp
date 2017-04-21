@@ -7,30 +7,47 @@
 <%@ page session="true" %>
 <div> 
     <!-- principio de header -->      
-     
-            <c:choose>
-                <c:when test="${ fn:contains(fn:toUpperCase(evento.recinto), 'RREY')}">
-                       <div id="encabezado" style="padding-right:10px; margin:0 auto;background-image:url(${contexto}/SuperBoletosRepositorio/suites/logoAM_suites.jpg);background-repeat:no-repeat;background-position:left;"> 
-                    <div   class="tilular-encabezado" style="margin-left: 150px;">
-                        <span style="width: 300px; margin-left: 50px;" /> Monterrey | Suites 
+    <header class="main-header">
+        <div class="logo-suite">
+            <span class="logo-lg">
+                <img src="../Suitesv2/assets/img/zignialogo_top.png" style="max-width: 120px"/>
+            </span>
+        </div>    
+                  
+           <nav class="navbar navbar-static-top">
+            <a href="#" class="" data-toggle="offcanvas" role="button">
+            </a>
+             <c:choose>
+                <c:when test="${sessionScope.opcion ==1}">
+                    <label id="suitetitle" class="simple-text" style="width: 220px;">Ciudad de México | Suites</label>
                 </c:when>
-                <c:when test="${ fn:contains(fn:toUpperCase(evento.recinto), 'XICO')}">
-                       <div id="encabezado" style="padding-right:10px; margin:0 auto;background-image:url(${contexto}/SuperBoletosRepositorio/suites/logoACMX_suites.png);background-repeat:no-repeat;background-position:left;"> 
-                    <div class="tilular-encabezado" style="margin-left:70px;">
-                       <span style="width: 300px; margin-left: 50px;" />&nbsp; CD. de M&eacute;xico | Suites 
+                <c:when test="${sessionScope.opcion ==2}">
+                    <label id="suitetitle" class="simple-text">Monterrey | Suites</label>
                 </c:when>
                 <c:otherwise>
-                       <div id="encabezado">
-                    <div class="tilular-encabezado">
-                        Suites 
+                    <label id="suitetitle" class="simple-text">Suites</label>
                 </c:otherwise>
             </c:choose>
             
-            
+                            
+            <label class="label-version hidden-xs"><s:message code="key_version" /></label>
+        
+ 
+            <div class="navbar-custom-menu" >      
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" >                
+                        
+                        <ul class="dropdown-menu">
+                        </ul>   
+                    </li>                     
+                </ul>
                 
-            </div>
-                           <label style="font-size: 10px; margin-left: 1000px; margin-bottom: 50px;"><s:message code="key_version" /></label>  
-       	</div>      
+            </div>                            
+        </nav>
+
+        
+    </header>
+  
                                
 </div>
                            

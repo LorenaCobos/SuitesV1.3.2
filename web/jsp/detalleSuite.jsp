@@ -34,6 +34,12 @@
 
 <input type="hidden" id="suiteId" value="${suite.seccionUbicacionId}" />
 <input type="hidden" id="estacionamientoIdHdn" value="${suite.estacionamientoId}" />
+<input type="hidden" id="hdnselectRecinto" value="${suites_.recintoBuscarId}" />
+<input type="hidden" id="hdntextfieldDueno" value="${suites_.suitehambienteBuscarId}" />
+<input type="hidden" id="hdnselectEstatus" value="${suites_.estatusBuscarId}" />
+<input type="hidden" id="hdntextfieldSuite" value="${suites_.suiteBuscarId}" />
+<input type="hidden" id="hdntxtFechaInicio" value="${suites_.fechainiBuscarId}" />
+<input type="hidden" id="hdntxtFechaFin" value="${suites_.fechafinBuscarId}" />
 <br>
 <form id="formSuite" >
 
@@ -291,7 +297,11 @@
 
 
 </form>
-
+<div id="contForm" >
+                        <form:form id="formulario" name="formulario"  method="post" action="">
+                            
+                        </form:form>
+                    </div> 
 
 <script>
     var observacion=$("#txtObservaciones").val();

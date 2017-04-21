@@ -34,7 +34,7 @@ function validacion_()
             }
             else
             {
-                location.href = "/Suites/logout.do";   
+                location.href = "/Suitesv2/logout.do";   
                
             }
         }

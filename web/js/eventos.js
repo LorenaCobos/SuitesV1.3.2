@@ -1,13 +1,18 @@
 function inicioGeneral() {
+    
        /*if(getQueryVariable('r')!=false)
         {
             $("#selectRecinto").val(getQueryVariable('r'));
             bloquear();
-            dwrEvento.getSuitesUsuario($("#selectRecinto").val(),0,eventos.getSuitesUsuarioCall);
+            
             alert(getQueryVariable('s'));
             $("#selectSuite").val();
             
         }*/
+    if($("#selectRecinto").val()!=0||$("#selectRecinto").val()!='0')
+    {
+        dwrEvento.getSuitesUsuario($("#selectRecinto").val(),0,eventos.getSuitesUsuarioCall);
+    }
     eventos.cargaInicial();
     
    
@@ -32,6 +37,18 @@ var eventos = {
             changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
+            changeYear: true, onSelect: function(textoFecha, objDatepicker)
+            {
+                datefin=$("#fechaFinBusqueda").val();
+                dateinicio=textoFecha;
+                var z= new Date();
+                var w= new Date();
+                var fechainicio = dateinicio.split('/');
+                var fechafin = datefin.split('/');
+                z.setFullYear(fechainicio[2],fechainicio[1]-1,fechainicio[0]);
+                w.setFullYear(fechafin[2],fechafin[1]-1,fechafin[0]);
+                if(w<=z){alertaError(error, horario);$("#fechaFinBusqueda").val("")};
+            },
             onClose: function(dateText, inst) {
                 if ($(window.event.srcElement).hasClass('ui-datepicker-close'))
                 {
@@ -42,6 +59,18 @@ var eventos = {
             changeYear: true,
             showButtonPanel: true,
             closeText: 'Limpiar',
+            changeYear: true,onSelect: function(textoFecha, objDatepicker)
+            {
+                dateinicio=$("#fechaIniBusqueda").val();
+                datefin=textoFecha;
+                var x= new Date();
+                var y= new Date();
+                var fechainicio = dateinicio.split('/');
+                var fechafin = datefin.split('/');
+                x.setFullYear(fechainicio[2],fechainicio[1]-1,fechainicio[0]);
+                y.setFullYear(fechafin[2],fechafin[1]-1,fechafin[0]);
+                if(y<=x){alertaError(error, horario);$("#fechaFinBusqueda").val("")};
+            },
             onClose: function(dateText, inst) {
                 if ($(window.event.srcElement).hasClass('ui-datepicker-close'))
                 {
@@ -58,6 +87,7 @@ var eventos = {
             else{
                     //r =$("#selectRecinto").val();
                     //s=$("#selectSuite").val();
+                    $("#hdnsuiteBusquedaId").val($("#selectSuite").val()) ;
                     eventos.obtenerEventos();
                 }
         });
@@ -99,7 +129,35 @@ var eventos = {
         }
     },
     obtenerEventos: function () {
-        
+        if($("#hdnsuiteBusquedaId").val()!="")
+        {
+            dwrEvento.getSuitesPresentacionesUsuario(
+                Aes.Ctr.encrypt($("#selectRecinto").val(), "", 1),
+                Aes.Ctr.encrypt($("#eventoBusqueda").val(), "", 1),
+                Aes.Ctr.encrypt($("#fechaIniBusqueda").val(), "", 1),
+                Aes.Ctr.encrypt($("#fechaFinBusqueda").val(), "", 1),
+                Aes.Ctr.encrypt($("#hdnsuiteBusquedaId").val(), "", 1),        
+                        {
+                            callback: function (data) {
+                                switch (data) {
+                                    case null:
+                                        alertaErrorGenerico();
+                                        break;
+                                    default:
+                                        bloquear();
+                                        $("#selectSuite").val($("#hdnsuiteBusquedaId").val());
+                                        eventos.construirTabla(data);
+                                        break;
+                                }
+                            },
+                            preHook: function () {
+                                bloquear();
+                            },
+                            postHook: function () {
+                                desbloquear();
+                            }
+                        });
+        }
         if($("#selectSuite").val()!==null&&$("#selectRecinto").val()!==null){
         dwrEvento.getSuitesPresentacionesUsuario(
                 Aes.Ctr.encrypt($("#selectRecinto").val(), "", 1),

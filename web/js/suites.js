@@ -73,7 +73,8 @@ var suites = {
             Table.innerHTML = "";
         });
 
-
+        event.preventDefault();
+        suites.obtenerSuites();
     },
     obtenerSuites: function() {
         dwrSuite.obtenerSuites(Aes.Ctr.encrypt($("#selectRecinto").val(), "", 1), Aes.Ctr.encrypt($("#textfieldSuite").val(), "", 1),
@@ -227,6 +228,12 @@ var suites = {
 
     },
     irDetalleForm: function(suite) {
+        var recintoBuscarId=$("#selectRecinto").val();
+        var suitehambienteBuscarId=$("#textfieldDueno").val();
+        var estatusBuscarId=$("#selectEstatus").val();
+        var suiteBuscarId=$("#textfieldSuite").val();
+        var fechainiBuscarId=$("#txtFechaInicio").val();
+        var fechafinBuscarId=$("#txtFechaFin").val();
         $("#formulario").attr("action", baseNormal + "/s/detalleSuite.do");
         var form = $("#formulario");
 
@@ -237,6 +244,49 @@ var suites = {
                             name: 'suiteId',
                             id: 'suiteId',
                             value: $.trim(suite)
+                        }
+                ), 
+                $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'recintoBuscarId',
+                            id: 'recintoBuscarId',
+                            value: $.trim(recintoBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'suitehambienteBuscarId',
+                            id: 'suitehambienteBuscarId',
+                            value: $.trim(suitehambienteBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'estatusBuscarId',
+                            id: 'estatusBuscarId',
+                            value: $.trim(estatusBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'suiteBuscarId',
+                            id: 'suiteBuscarId',
+                            value: $.trim(suiteBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'fechainiBuscarId',
+                            id: 'fechainiBuscarId',
+                            value: $.trim(fechainiBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'fechafinBuscarId',
+                            id: 'fechafinBuscarId',
+                            value: $.trim(fechafinBuscarId)
                         }
                 )
                 );

@@ -86,8 +86,8 @@ var detalleSuite = {
         });
 
         $("#buttonRegresar").click(function (event) {
-            event.preventDefault();
-            navaegacion('suites');
+             event.preventDefault();
+            detalleSuite.regresarEventos();
         });
 
         $("#lblFechaInicio").hide();
@@ -304,6 +304,62 @@ var detalleSuite = {
 
                 }
         );
+    },
+      regresarEventos: function() {
+        var recintoBuscarId=$("#hdnselectRecinto").val();
+        var suitehambienteBuscarId=$("#hdntextfieldDueno").val();
+        var estatusBuscarId=$("#hdnselectEstatus").val();
+        var suiteBuscarId=$("#hdntextfieldSuite").val();
+        var fechainiBuscarId=$("#hdntxtFechaInicio").val();
+        var fechafinBuscarId=$("#hdntxtFechaFin").val();
+        $("#formulario").attr("action", baseNormal + "/s/suites.do");
+        var formulario = $("#formulario");
+        formulario.append(
+                $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'recintoBuscarId',
+                            id: 'recintoBuscarId',
+                            value: $.trim(recintoBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'suitehambienteBuscarId',
+                            id: 'suitehambienteBuscarId',
+                            value: $.trim(suitehambienteBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'estatusBuscarId',
+                            id: 'estatusBuscarId',
+                            value: $.trim(estatusBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'suiteBuscarId',
+                            id: 'suiteBuscarId',
+                            value: $.trim(suiteBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'fechainiBuscarId',
+                            id: 'fechainiBuscarId',
+                            value: $.trim(fechainiBuscarId)
+                        }
+                ), $("<input/>",
+                        {
+                            type: 'hidden',
+                            name: 'fechafinBuscarId',
+                            id: 'fechafinBuscarId',
+                            value: $.trim(fechafinBuscarId)
+                        }
+                )
+                );
+        $("#formulario").submit();
     }
 
 };

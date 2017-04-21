@@ -45,7 +45,7 @@
                             <img src="../assets/img/user.png" style="max-width: 25px"/>
                             &nbsp; ${user.nombres} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/Suites/logout.do" name="operacion_menu"  id="lnkSalir" ><s:message code="key_label_cerrar_sesion"/></a></li>
+                            <li><a href="/Suitesv2/logout.do" name="operacion_menu"  id="lnkSalir" ><s:message code="key_label_cerrar_sesion"/></a></li>
 
                         </ul>   
                     </li>                     

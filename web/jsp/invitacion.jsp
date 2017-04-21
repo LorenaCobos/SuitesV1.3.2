@@ -55,7 +55,7 @@
                             </c:if>
                         </p>
                         <p>
-                            A continuación, favor de seleccionar su respuesta para la asistencia a este evento y en caso de ser confirmado por el Suite-Habiente se le hará llegar a su correo 
+                            A continuación, favor de seleccionar su respuesta para la asistencia a este evento y en caso de ser confirmado se le hará llegar a su correo 
                             <em>${correo}</em> el archivo PDF con el que usted podrá imprimir su(s) boleto(s) para su ingreso al evento.
                         </p>
 

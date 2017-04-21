@@ -4,7 +4,7 @@
  */
 
 //Genericos
-var horario ="La fecha es incorrecta";
+var horario ="Initial to Major Date to Final Date";
 var sesion_="Please sign in again";
 var seleccion="Seleccionar un Recinto";
 var invalido ="Invalid"
@@ -31,6 +31,7 @@ var errorInternoRecuperar ="An internal error has ocurred. Please try again.";
 var no_existe_usuario="User doesn't exists";
 var bienvenido = "welcome";
 var usuarioSinPermisos = "The user dont have the proper access rights";
+var usuarioincorrecto="El usuario o contraseña es incorrecto";
 var tituo = "Enter your email to regain your ";
 var usuario = "Login";
 var contrasenia = "Password";

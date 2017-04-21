@@ -44,7 +44,7 @@ public class LoginDwr {
     public int validaUsuario(String usuario, String password, HttpServletRequest req, HttpSession session) throws ExceptionCmm, Exception {
         int resp = 0;
         UsuariosEntidad usr = loginDAO.validaUsuario(AesDwr.decrypt(usuario), AesDwr.decrypt(password), req.getLocale().getLanguage().equals("es") ? 1 : 2);
-        if (usr.getUsuarioId() > 0) {
+        if (usr.getUsuarioId() > 0 && usr.getUsuarioId() != 1) {
             resp = 1;
             session.setAttribute("usuarioEntidad", usr);
             session.setAttribute("funcionalidades", loginDAO.getFuncionalidadesOperacionesUsuario(usr.getUsuarioId()));

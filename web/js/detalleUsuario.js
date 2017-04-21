@@ -6,7 +6,7 @@ function inicioGeneral() {
         disable_search_threshold: 10,
         no_results_text: "Oops, sin datos!"
     });
-
+     
 }
 
 function validarsuites()
@@ -47,7 +47,8 @@ var detalleUsuario = {
         });
         $("#buttonRegresar").click(function (event) {
             event.preventDefault();
-            navaegacion('usuarios');
+            detalleUsuario.regresarEventos();
+           // navaegacion('usuarios');
         });
         $("#buttonNuevo").click(function (event) {
             event.preventDefault();
@@ -395,6 +396,74 @@ var detalleUsuario = {
 
                 }
         );
+    },
+     regresarEventos: function() {
+        
+      
+        
+        var recintoBusquedaId = $("#hdnrecintoBusquedaId").val();
+        var suitesBusquedaId = $("#hdnsuitesBusquedaId").val();
+        var nombreBusquedaId = $("#hdnnombreBusquedaId").val();
+        var correoBusquedaId = $("#hdncorreoBusquedaId").val();
+        var estatusBusquedaId = $("#hdnestatusBusquedaId").val();
+        var tipoBusquedaId = $("#hdntipoBusquedaId").val();
+      
+        $("#formulario").attr("action",baseNormal+"/s/usuarios.do");
+        
+        var formulario = $("#formulario");
+        formulario.append(
+                $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'recintoBusquedaId',
+                               value: $.trim(recintoBusquedaId),
+                               id: 'recintoBusquedaId'
+                           }
+                   ),
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'suitesBusquedaId',
+                               value: $.trim(suitesBusquedaId),
+                               id: 'suitesBusquedaId'
+                           }
+                   ),
+                    $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'nombreBusquedaId',
+                               value: $.trim(nombreBusquedaId),
+                               id: 'nombreBusquedaId'
+                           }
+                   ),
+
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'correoBusquedaId',
+                               value: $.trim(correoBusquedaId),
+                               id: 'correoBusquedaId'
+                           }
+                   ),
+                      $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'estatusBusquedaId',
+                               value: $.trim(estatusBusquedaId),
+                               id: 'estatusBusquedaId'
+                           }
+                   ),
+
+                   $("<input/>",
+                           {
+                               type: 'hidden',
+                               name: 'tipoBusquedaId',
+                               value: $.trim(tipoBusquedaId),
+                               id: 'tipoBusquedaId'
+                           }
+                   )
+                );
+        $("#formulario").submit();
     }
 
 };

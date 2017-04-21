@@ -80,7 +80,7 @@
                             <select name="selectRecinto" id="selectRecinto" class="form-control" onchange="cambiarHeader()">
                                 <option value="0"><s:message code="key_generico_todos"/></option>
                                 <c:forEach var="recinto" items="${recintos}">
-                                    <option value="${recinto.id}">${recinto.nombre}</option>
+                                    <option value="${recinto.id}" ${recinto.id == usuarios.recintoBusquedaId ? 'selected="selected"' : ''}>${recinto.nombre}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -94,7 +94,7 @@
                             <select name="selectSuite" id="selectSuite" class="form-control">
                                 <option value="0"><s:message code="key_generico_todos"/></option>
                                 <c:forEach var="suite" items="${suites}">
-                                    <option value="${suite.id}">${suite.nombre}&nbsp;${suite.clave}</option>
+                                    <option value="${suite.id}" ${suite.id == usuarios.suitesBusquedaId ? 'selected="selected"' : ''}>${suite.nombre}&nbsp;${suite.clave}</option>
                                 </c:forEach>
                             </select>
                         </div>                      
@@ -108,14 +108,14 @@
                             <label for="textfield2" class="control-label" ><s:message code="key_placeholder_nombre"/>:</label>
                         </div>
                         <div class="col-md-5 col-sm-4 col-xs-12">
-                            <input type="text" name="textfield" id="textfieldNombre" class="form-control">
+                            <input type="text" name="textfield" id="textfieldNombre" class="form-control" value="${usuarios.nombreBusquedaId}">
                         </div>                        
                        
                         <div class="col-md-2 col-sm-2 col-xs-12 text-left">
                             <label for="textfield2" class="control-label" ><s:message code="key_placeholder_correo"/>:</label>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12">                            
-                            <input type="text" name="textfieldCorreo" id="textfieldCorreo" class="form-control">
+                            <input type="text" name="textfieldCorreo" id="textfieldCorreo" class="form-control" value="${usuarios.correoBusquedaId}">
                         </div>  
                         
                     </div>
@@ -129,7 +129,7 @@
                             <select name="select" id="selectEstatus" class="form-control">
                                 <option value="0"><s:message code="key_generico_todos"/></option>
                                 <c:forEach var="estatus" items="${estatus}">
-                                    <option value="${estatus.clave}">${estatus.nombre}</option>
+                                    <option value="${estatus.clave}"  ${estatus.clave == usuarios.estatusBusquedaId ? 'selected="selected"' : ''}>${estatus.nombre}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -143,7 +143,7 @@
                             <select name="select" id="selectTipo" class="form-control">
                                 <option value="0"><s:message code="key_generico_todos"/></option>
                                 <c:forEach var="tipos" items="${tipos}">
-                                    <option value="${tipos.id}">${tipos.nombre}</option>
+                                    <option value="${tipos.id}" ${tipos.id == usuarios.tipoBusquedaId ? 'selected="selected"' : ''}>${tipos.nombre}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -203,40 +203,23 @@
                             
                         </form:form>
                     </div>  
+<script type="text/javascript" src="<%= request.getContextPath()%>/js/bootstrap-toolkit.min.js"></script>
 
 <script>
-    (function ($, document, window, viewport) {
-        var colapsa = function () {
-            
+    (function($, document, window, viewport) {
+        var colapsa = function() {
+
             os = getMobileOperatingSystem();
-            
+
             if (os.match("celular"))
                 $('#collapse1').removeClass('in');
             else
                 $('#collapse1').collapse('show');
-            
-            //if (viewport.is('xs')) {
-                //$('#collapse1').collapse('hide');
-                //$('#collapse1').removeClass('in');
-            //}
-            //if (!viewport.is('xs')) {
-                //$('#collapse1').collapse('show');
-            //}
         };
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             colapsa();
-
         });
-
-        //$(window).resize(viewport.changed(function () {
-            //colapsa();
-        //}));
 
     }(jQuery, document, window, ResponsiveBootstrapToolkit));
 </script>
-
-
-
-
-

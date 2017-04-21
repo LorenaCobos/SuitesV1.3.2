@@ -35,6 +35,12 @@
 
 
 <input type="hidden" id="hdnUsuarioId" value="${usuario.usuarioId}">
+<input type="hidden" id="hdnrecintoBusquedaId" value="${usuarios.recintoBusquedaId}">
+<input type="hidden" id="hdnsuitesBusquedaId" value="${usuarios.suitesBusquedaId}">
+<input type="hidden" id="hdnnombreBusquedaId" value="${usuarios.nombreBusquedaId}">
+<input type="hidden" id="hdncorreoBusquedaId" value="${usuarios.correoBusquedaId}">
+<input type="hidden" id="hdnestatusBusquedaId" value="${usuarios.estatusBusquedaId}">
+<input type="hidden" id="hdntipoBusquedaId" value="${usuarios.tipoBusquedaId}">
 <br>
 
 
